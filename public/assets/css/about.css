@@ -1,0 +1,32 @@
+.sub-title{
+    font-family: hind-semi;
+    color: #FF7400;
+}
+.title{
+    font-family: hind-semi;
+}
+.about-dec{
+    color: gray;
+}
+.about-det .social-icons{
+    justify-content: end;
+}
+.about-det .social-icons a{
+    transition: 0.5s;
+    border: 0;
+}
+.about-det .social-icons .facebook:hover{
+    background-color: #365493;
+}
+.about-det .social-icons .twitter:hover{
+    background-color: #3cf;
+}
+.about-det .social-icons .pinterest:hover{
+    background-color: #cb2027;
+}
+.about-det .social-icons .linkedin:hover{
+    background-color: #0274b3;
+}
+.about-det .social-icons .telegram:hover{
+    background-color: #37aee2;
+}

@@ -1,0 +1,60 @@
+.faq h3{
+    font-family: hind-semi;
+}
+.contact-form h3{
+    font-family: hind-semi;
+}
+.dec-acc .accordion{
+    border-top: 1px solid rgba(128, 128, 128, 0.404);
+}
+.accordion{
+    position: relative;
+}
+.accordion .ac-btn {
+  
+    text-transform: capitalize;
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
+    font-family: hind-semi;
+    font-weight: bold;
+    color: gray;
+  }
+  .accordion .ac-btn:after {    
+    background: none repeat scroll 0 0 transparent;
+    top: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: transparent;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+.accordion .ac-btn:hover:after { 
+    width: 100%; 
+    left: 0; 
+  }
+  .accordion .ac-btn.active:after { 
+    width: 100%; 
+    left: 0; 
+  }
+  .accordion .ac-btn.active { 
+    color: #FF7400 !important;
+  }
+  .accordion .ac-btn.active span i{ 
+    transform: rotate(180deg);
+    
+  }
+  .accordion .ac-btn span i{ 
+    transform: rotate(0);
+    transition: 0.5s;   
+  }
+  .accordion .tab-content{
+    position: relative;
+
+  }

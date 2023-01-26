@@ -1,0 +1,50 @@
+.compare-row{
+
+    overflow-x: auto;
+    border-left: 1px solid rgba(128, 128, 128, 0.349);
+}
+.compare-row .compare-item{
+    width: 350px;
+    border-top: 1px solid rgba(128, 128, 128, 0.349);
+    border-right: 1px solid rgba(128, 128, 128, 0.349);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.349);
+    overflow: hidden;
+}
+.compare-row .compare-item a img{
+    width: 330px;
+}
+@media (max-width: 575.98px) {
+    .compare-row{
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        border-left: 1px solid rgba(128, 128, 128, 0.349);
+    }
+    .compare-row .compare-item{
+        width: 250px;
+        border-top: 1px solid rgba(128, 128, 128, 0.349);
+        border-right: 1px solid rgba(128, 128, 128, 0.349);
+        border-bottom: 1px solid rgba(128, 128, 128, 0.349);
+        overflow: hidden;
+    }
+    .compare-row .compare-item a img{
+        width: 230px;
+    }
+
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .compare-row{
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        border-left: 1px solid rgba(128, 128, 128, 0.349);
+    }
+    .compare-row .compare-item{
+        width: 250px;
+        border-top: 1px solid rgba(128, 128, 128, 0.349);
+        border-right: 1px solid rgba(128, 128, 128, 0.349);
+        border-bottom: 1px solid rgba(128, 128, 128, 0.349);
+        overflow: hidden;
+    }
+    .compare-row .compare-item a img{
+        width: 230px;
+    }
+}

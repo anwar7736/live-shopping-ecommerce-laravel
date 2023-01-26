@@ -1,0 +1,37 @@
+.signup-form .title{
+    text-transform: uppercase;
+    font-family: hind-semi;
+}
+.signup-form form .form-control{
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+}
+.signup-form form p{
+    font-size: 15px;
+    color: gray;
+}
+.signup-form form .btn{
+    border-radius: 0;
+    background-color: #FF7400;
+    color: white;
+    transition: 0.5s;
+    padding: 10px;
+}
+.signup-form form .btn:hover{
+    background-color: #fd943e;
+}
+.form-target .title{
+    text-transform: uppercase;
+    font-family: hind-semi;
+}
+.form-target p{
+    font-size: 15px;
+    color: gray;
+}
+.form-target .btn{
+    border-radius: 0;
+    width: 100px;
+    padding: 10px;
+    text-transform: uppercase;
+}

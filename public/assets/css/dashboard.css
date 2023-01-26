@@ -1,0 +1,75 @@
+.account-menu{
+    border-right: 1px solid rgba(128, 128, 128, 0.295);
+    transition: 0.3s linear;
+    z-index: 1080;
+}
+.account-menu .menu-box-inner{
+    max-height: 100vh;
+    overflow-y: auto;
+}
+.account-menu .dismiss-box{
+    position: relative;
+}
+.account-menu .dismiss-box .dismiss{
+    position: absolute;
+    right: 10px;
+}
+.account-menu .title{
+    font-family: hind-semi;
+}
+.account-menu .navbar-nav .nav-item{
+    padding-left: 10px;
+}
+.account-menu .navbar-nav .nav-item:hover{
+    background: rgba(192, 192, 192, 0.178);
+    transition: 0.3s;
+}
+
+.account-box{
+    height: 10rem;
+    background: rgb(243, 243, 243);
+    border-radius: 20px;
+    box-shadow: 0px 0px 8px #8080808c;
+    transition: 0.5s;
+    align-items: center;
+    flex-direction: column;
+}
+
+.account-box:hover{
+    background: rgb(223, 223, 223);
+}
+.account-box .icon{
+    font-size: 60px;
+}
+.account-box h3{
+    text-transform: uppercase;
+}
+.menu-details #account-sidebar{
+    position: fixed;
+    top: 40%;
+    left: 0;
+    border-radius: 0;
+    background: rgb(218, 218, 218);
+    border: 0;
+    color: black;
+    z-index: 1060;
+}
+
+
+.profile-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.profile-image{
+    max-height: 100px;
+    max-width: 100px;
+
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(128, 128, 128, 0.233);
+}
+.profile-image img{
+    width: 100%;
+}
