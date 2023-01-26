@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Http;
 
 Route::get('/', function () {
     return view('layouts.app');
@@ -22,3 +22,15 @@ Route::get('/cartlist', \App\Http\Controllers\CartController::class)->name('cart
 Route::get('/product_details', [\App\Http\Controllers\ProductController::class, 'show'])->name('product.details');
 Route::get('/category_wise_product', [\App\Http\Controllers\ProductController::class, 'productByCategory'])->name('product.category');
 Route::get('/product_search', [\App\Http\Controllers\ProductController::class, 'search'])->name('product.search');
+
+Route::get('/connect_database', function(){
+    // $records = \DB::connection('server_mysql')
+    // ->table('products')
+    // ->get()
+    // ->toArray();
+    // dd($records);
+
+    $response = Http::get('https://advertbangladesh.com/testpos/api/product_sizes_and_colors');
+    dd($response->json());
+
+});

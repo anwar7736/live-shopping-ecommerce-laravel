@@ -21,6 +21,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @for($i = 0; $i < 2; $i++)
                             <tr class="border border-muted border-end-0 border-top-0 border-start-0">
                                 <td>
                                         <div class="remove">
@@ -36,7 +37,7 @@
                                 </td>
                                 <td>
                                     <div class="product-name">
-                                        <a href="product.html" class="text-decoration-none text-dark">
+                                        <a href="{{route('product.details', ['id'=>$id ?? 1])}}" class="text-decoration-none text-dark">
                                             China Luxury Polo Shirt
                                         </a>
                                     </div>
@@ -66,6 +67,7 @@
                                     </div>
                                 </td>
                             </tr>
+                        @endfor
                         </tbody>
                     </table>
                 </div>

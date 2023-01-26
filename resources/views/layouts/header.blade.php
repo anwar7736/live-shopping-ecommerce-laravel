@@ -148,7 +148,7 @@
                                         </div>
                                     <!-- dropdown  -->
                             </div>
-                            <button class="search-submit" type="submit">
+                            <button class="search-submit" type="button">
                                 <i class="fas fa-search"></i>
                             </button>
                         </li>
@@ -161,7 +161,7 @@
                     <div class="mobile-sidebar collapsed-left-open">
                         <form action="" class="mobile-sidebar-form">
                             <input type="text" class="msf-input" placeholder="Search For Products">
-                            <button type="submit"><i class="fas fa-search"></i></button>
+                            <button type="button"><i class="fas fa-search"></i></button>
                         </form>
                         <div class="m-sidebar-tab-container col-12">
                             <div class="row mst-row col-12 m-0 p-0">
@@ -173,11 +173,11 @@
                                 </div>  
                             </div>
                             <ul class="navbar-nav m-menu-dp">
-                                <li class="nav-item m-menu-active"><a href="#" class="nav-link">Home</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Shop</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Flash Sell</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">About Us</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
+                                <li class="nav-item m-menu-active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
+                                <li class="nav-item"><a href="{{ route('shop') }}" class="nav-link">Shop</a></li>
+                                <li class="nav-item"><a href="{{ route('flash.sell') }}" class="nav-link">Flash Sell</a></li>
+                                <li class="nav-item"><a href="{{ route('about.us') }}" class="nav-link">About Us</a></li>
+                                <li class="nav-item"><a href="{{ route('contact.us') }}" class="nav-link">Contact Us</a></li>
                             </ul>
                             <ul class="navbar-nav m-cat-dp" style="display: none;">
                                 <li class="nav-item m-cat-active"><a href="#" class="nav-link">Polo shirt</a></li>
@@ -212,19 +212,19 @@
                     <li class="menu-items-container d-none d-md-none d-lg-block">
                         <ul class="d-flex menu-items">
                             <li class="nav-item">
-                                <a href="/" class="nav-link active">Home</a>
+                                <a href="/{{ route('home') }}" class="nav-link active">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="shop.html" class="nav-link">Shop</a>
+                                <a href="{{ route('shop') }}" class="nav-link">Shop</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Flash Sell</a>
+                                <a href="{{ route('flash.sell') }}" class="nav-link">Flash Sell</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">About Us</a>
+                                <a href="{{ route('about.us') }}" class="nav-link">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Contact Us</a>
+                                <a href="{{ route('contact.us') }}" class="nav-link">Contact Us</a>
                             </li>
                         </ul>
                     </li>

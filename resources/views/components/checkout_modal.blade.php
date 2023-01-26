@@ -6,7 +6,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="cart-items">
+      @for($i = 0; $i < 2; $i++)
+        <div class="cart-items mt-2">
             <div class="cart-item cart1 d-flex justify-content-between">
                 <img src="assets/images/products/1.jpg" alt="Product Image" width="80">
                 <div class="align-item-center ps-3 quantity-buy" >
@@ -27,6 +28,7 @@
                 </p>
             </div>
         </div>
+        @endfor
         <hr>
         <form action="" class="cart-form">
             <div class="mb-3 col-12">
