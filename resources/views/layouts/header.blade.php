@@ -76,37 +76,20 @@
                             <!-- dropdown  -->
                             <div class="search-cat-dp-hover">
                                 <ul>
+                                    @foreach(\Cache::get('categories') as $category)
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">Polo Shirt</a>
+                                        <a href="{{ route('product.category', ['id'=>$category['id']]) }}" class="nav-link">{{ $category['name'] }}</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">Shirt</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">Panjabi</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">Blazer</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">Flash Sale</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">Pants</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">Shoes</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">Watches</a>
-                                    </li>
+                                    @endforeach
+                                    
                                 </ul>
                             </div>
                         <!-- dropdown  -->
                         </li>
                         
                         <li class="search-box ps-lg-3">
-                            <input type="text" class="search-input" placeholder="Search For Products">
+                            <input type="text" class="search-input" placeholder="Product search here.."
+                            onkeypress="handle(event)">
                             <div class="dpdown d-none d-md-none d-lg-block">
                                 <button class="search-dp ps-3 pe-3">
                                     <span class="pe-3">Search Category</span> <i class="fas fa-angle-down"></i>
@@ -114,41 +97,16 @@
                                     <!-- dropdown  -->
                                         <div class="search-cat-dp">
                                             <ul>
+                                                @foreach(\Cache::get('categories') as $category)
                                                 <li class="nav-item">
-                                                    <a href="#" class="nav-link">Blazer</a>
+                                                    <a href="{{ route('product.category', ['id'=>$category['id']]) }}" class="nav-link">{{ $category['name'] }}</a>
                                                 </li>
-                                                <li class="nav-item">
-                                                    <a href="#" class="nav-link">Flash Sale</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#" class="nav-link">Panjabi</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#" class="nav-link">Pants</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#" class="nav-link">Polo Shirt</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#" class="nav-link">Shirt</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#" class="nav-link">Shoes</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#"> class="nav-link"T-Shirt</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#" class="nav-link">Voucher Card</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#" class="nav-link">Watches</a>
-                                                </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     <!-- dropdown  -->
                             </div>
-                            <button class="search-submit" type="button">
+                            <button class="search-submit" type="button" onclick="searchItem()">
                                 <i class="fas fa-search"></i>
                             </button>
                         </li>
@@ -159,9 +117,9 @@
             <div class="sidebar-main">
                 <div class="m-row">
                     <div class="mobile-sidebar collapsed-left-open">
-                        <form action="" class="mobile-sidebar-form">
-                            <input type="text" class="msf-input" placeholder="Search For Products">
-                            <button type="button"><i class="fas fa-search"></i></button>
+                        <form action="#" class="mobile-sidebar-form">
+                        <input type="text" class="msf-input" placeholder="Product search here..">
+                            <button type="button" onclick="mobileSearch()"><i class="fas fa-search"></i></button>
                         </form>
                         <div class="m-sidebar-tab-container col-12">
                             <div class="row mst-row col-12 m-0 p-0">
@@ -180,13 +138,11 @@
                                 <li class="nav-item"><a href="{{ route('contact.us') }}" class="nav-link">Contact Us</a></li>
                             </ul>
                             <ul class="navbar-nav m-cat-dp" style="display: none;">
-                                <li class="nav-item m-cat-active"><a href="#" class="nav-link">Polo shirt</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">T-shirt</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Panjabi</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Blazer</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Pants</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Shoes</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Watches</a></li>
+                                @foreach(\Cache::get('categories') as $category)
+                                <li class="nav-item m-cat-active">
+                                    <a href="{{ route('product.category', ['id'=>$category['id']]) }}" class="nav-link">{{ $category['name'] }}</a>
+                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -242,3 +198,31 @@
                 </ul>
             </div>
         </div>
+        <script>
+            function handle(e)
+            {
+                let query = e.target.value;
+                if(e.keyCode === 13 && query.length > 1)
+                {
+                    window.location.href = "product_search?query="+query;
+                }
+            }
+
+            function searchItem()
+            {
+                let query = document.querySelector('.search-input').value;
+                if(query.length > 1)
+                {
+                    window.location.href = "product_search?query="+query;
+                }
+            }            
+            
+            function mobileSearch()
+            {
+                let query = document.querySelector('.msf-input').value;
+                if(query.length > 1)
+                {
+                    window.location.href = "product_search?query="+query;
+                }
+            }
+        </script>

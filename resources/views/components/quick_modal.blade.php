@@ -1,4 +1,7 @@
-<div class="modal fade " id="product-modal" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    @php 
+        $variations = $product['variations'];
+        $product = $product['product'];
+    @endphp
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header border-0">
@@ -7,20 +10,23 @@
                 </div>
             </div>
             <div class="modal-body product-popup">
-                
                 <div class="row">
                     <div class="modal-product-image col-6">
                         <div id="modal-product-image-inner" class="carousel slide" data-bs-ride="carousel"  data-bs-touch="true">
                             <div class="carousel-inner" role="listbox">
-                                <div class="carousel-item active">
-                                    <img src="assets/images/products/1.jpg" alt="Products" class="col-12">
+                            @if($product['image_url'])
+                                <div data-hash="slide1">
+                                    <a data-fancybox="gallery" data-src="{{$product['image_url']}}">
+                                        <img src="{{$product['image_url']}}" class="w-100 d-block" alt="">
+                                    </a>
                                 </div>
-                                <div class="carousel-item">
-                                    <img src="assets/images/products/1.jpg" alt="Products" class="col-12">
+                            @else
+                                <div data-hash="slide2">
+                                    <a data-fancybox="gallery" data-src="assets/images/products/default-image.jpg">
+                                        <img src="assets/images/products/default-image.jpg" class="w-100 d-block" alt="">
+                                    </a>
                                 </div>
-                                <div class="carousel-item">
-                                    <img src="assets/images/products/1.jpg" alt="Products" class="col-12">
-                                </div>
+                            @endif
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#modal-product-image-inner" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -31,18 +37,36 @@
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-                        <a href="product.html" class="btn col-12">View Details</a>
+                        <a href="{{route('product.details', ['id'=>$product['id'] ?? 1])}}" class="btn col-12 view_details">View Details</a>
                     </div>
                     <div class="modal-product-details col-6 pt-3">
-                        <a href="product.html" class="text-decoration-none text-dark">
-                            <h3>Fashionable Men’s Polo Shirt</h3>
+                        <a href="{{route('product.details', ['id'=>$product['id'] ?? 1])}}" class="text-decoration-none text-dark">
+                            <h3 class="product_name">{{$product['product'] ?? $product['default_name']}}</h3>
                         </a>
-                        <h6 class="price pt-3">
-                            <del class="text-muted">850.00৳</del><span class="ps-1" style="color: #ff7400; font-weight: bold;">750.00৳</span>
-                        </h6>
-                        <p class="text-sm">
-                            Live Shopping is one of the fastest-growing trendy fashion lifestyle brands in Bangladesh. We have just started! We aimed to serve our customers with international products at a competitive price range. We deliver premium quality and 100% QC pass products. Live Shopping means Exact Shopping
+                        <div class="price {{$product['regular_price'] > 0 && $product['regular_price'] != $product['variation']['default_sell_price'] ? '' : 'd-none'}}">
+                            <del class="text-muted">{{ number_format($product['variation']['default_sell_price'], 2) }}৳
+                            </del>
+                            <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{ number_format($product['regular_price'], 2) }}৳</span>
+                            </div>                            
+                        <div class="price {{$product['regular_price'] <= 0 || $product['regular_price'] == $product['variation']['default_sell_price'] ? '' : 'd-none'}}">
+                        <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{(number_format($product['variation']['default_sell_price'], 2))}}৳</span>
+                        </div>
+                        <p class="text-sm description">
+                            {!! $product['description'] !!}
                         </p>
+                        @if($product['type'] == 'variable')
+                            <strong class="text-sm">
+                                <span>Variations:</span>
+                                <div class="d-flex justify-content-between">
+                                    @foreach($variations as $v)
+                                        <div class="">
+                                            <label><input type="radio" value="{{$v['id']}}" name="size" class="size"/> {{$v['name']}}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                            </strong><br/>
+                        @endif
                         <div class="quantity-buy d-flex">
                             <div class="quantity">
                                 <button class="cart-qty-minus" id="dec" type="button" value="-">-</button>
@@ -53,8 +77,8 @@
                             <button class="btn">Buy</button>
                         </div>
                         <hr>
-                        <p><b>SKU:</b> 0613</p>
-                        <p><b>Category: </b> Polo Shirt</p>
+                        <p><b>SKU:</b> {{ $product['sku'] ?? '' }}</p>
+                        <p><b>Category: </b> {{ $product['category'] ?? '' }}</p>
                         
                     </div>
                 </div>
@@ -62,4 +86,3 @@
             </div>
         </div>
     </div>
-</div>

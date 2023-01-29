@@ -18,9 +18,14 @@
     <hr>
     <div class="container mt-5 mb-5">
         <div class="row deal-day-row">
-        @for($i = 0; $i < 12; $i++)
-            @include('components.product_view', ['class'=> 'col-lg-3 col-md-3 col-6 product p-2'])
-        @endfor
+            @forelse($products as $product)
+                @include('components.product_view', [
+                    'class'=> 'col-lg-3 col-md-3 col-6 product p-2',
+                    'product' => $product
+                    ])
+            @empty
+            <h4 class="text-center mt-3 text-danger">No Product Found!</h4>
+            @endforelse
         </div>
     </div>
 </section>

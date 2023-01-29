@@ -14,12 +14,28 @@
 @endsection
 @section('content')
 <section>
-            <div class="container mt-5 mb-5">
-                <div class="row deal-day-row">
-                    @foreach($sales as $sale)
-                        @include('components.product_view', ['product'=>$sale])
-                    @endforeach
-                </div>
-            </div>
-        </section>
-        @endsection
+    <div class="container mt-5 mb-5">
+        <div class="row deal-day-row product_data">
+            
+        </div>
+    </div>
+</section>
+@endsection
+@push('js')
+<script>
+    $(document).ready(function(){
+        $.ajax({
+            url: '{{ route("flash_sell_product") }}',
+            method: "GET",
+            success: function(res)
+            {
+                if(res.html)
+                {
+                    $('.product_data').html(res.html);
+                }
+                
+            }
+        });
+    });
+</script>
+@endpush

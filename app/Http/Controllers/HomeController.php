@@ -28,6 +28,9 @@ class HomeController extends Controller
         $best_category = $best_cat->json();
         $export_category = $export->json();
         \Cache::put('delivery_sections', $delivery_sections);
+        $response = Http::get('https://advertbangladesh.com/testpos/api/category_list');
+        $categories = $response->json();
+        \Cache::put('categories', $categories['categories']);
         return view('home', compact(
             'home_sliders', 
             'deal_days', 

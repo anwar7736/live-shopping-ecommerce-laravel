@@ -21,7 +21,7 @@
                 <div class="main-content">
                     @yield('content')
                     @include('components.checkout_modal')
-                    @include('components.quick_modal')
+                    {{--@include('components.quick_modal')--}}
 
                     <div class="fixed-cart-bottom" data-bs-toggle="modal" data-bs-target="#buy-to-cart">
                         <span>
@@ -41,6 +41,7 @@
     <script src="{{asset('assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/bootstrap/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/js/main.js')}}"></script>
+    <script src="{{asset('assets/js/product.js')}}"></script>
     <script>        
         // $(function(){
         //    setTimeout(() => {

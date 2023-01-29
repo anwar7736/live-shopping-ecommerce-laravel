@@ -12,53 +12,62 @@
     <div class="row">
         <div class="col-lg-3 col-md-6 col-12 pe-0 product-image-col pt-2">
             <div class="image single-product-images mb-3">
-                <div class="discount-tag">
-                    -48%
+                <div class="discount-tag {{ calculateDiscount($product['product']) <= 0 ? 'd-none' : ''}}">
+                    - {{calculateDiscount($product['product'])}}%
                 </div>
                 <div class="owl-carousel slider-for-product">
-                    <div data-hash="slide1">
-                        <a data-fancybox="gallery" data-src="assets/images/products/1.jpg">
-                            <img src="assets/images/products/1.jpg" class="w-100 d-block" alt="Third slide">
-                        </a>
-                    </div>
-                    <div data-hash="slide2">
-                        <a data-fancybox="gallery" data-src="assets/images/products/2.jpg">
-                            <img src="assets/images/products/2.jpg" class="w-100 d-block" alt="Third slide">
-                        </a>
-                    </div>
+                    @if($product['product']['image_url'])
+                        <div data-hash="slide1">
+                            <a data-fancybox="gallery" data-src="{{$product['product']['image_url']}}">
+                                <img src="{{$product['product']['image_url']}}" class="w-100 d-block" alt="">
+                            </a>
+                        </div>
+                    @else
+                        <div data-hash="slide2">
+                            <a data-fancybox="gallery" data-src="assets/images/products/default-image.jpg">
+                                <img src="assets/images/products/default-image.jpg" class="w-100 d-block" alt="">
+                            </a>
+                        </div>
+                    @endif
                 </div>
                 
             </div>
             <div class="row">
-                <div class="col-3">
-                    <a href="#slide1">
-                        <img src="assets/images/products/1.jpg" alt="" class="col-12">
-                    </a>
-                </div>
-                <div class="col-3">
-                    <a href="#slide2">
-                        <img src="assets/images/products/1.jpg" alt="" class="col-12">
-                    </a>
-                </div>
+                @if($product['product']['image_url'])
+                    <div class="col-3">
+                        <a href="#slide1">
+                            <img src="{{$product['product']['image_url']}}" alt="" class="col-12">
+                        </a>
+                    </div>
+                @else
+                    <div class="col-3">
+                        <a href="#slide2">
+                            <img src="assets/images/products/default-image.jpg" alt="" class="col-12">
+                        </a>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="modal-product-details col-lg-6 col-md-6 col-12 pt-2">
             <nav aria-label="breadcrumb" class="pt-0">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="shop.html">Category Name</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Product Name</li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('product.category', ['id'=>$product['product']['category']]) }}">{{ $product['product']['category'] ?? '' }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $product['product']['product'] ?? $product['product']['default_name'] }}</li>
                 </ol>
                 </nav>
-            <a href="product.html" class="text-decoration-none text-dark">
-                <h3>Fashionable Men’s Polo Shirt</h3>
+            <a href="#" class="text-decoration-none text-dark">
+                <h3>{{ $product['product']['product'] ?? $product['product']['default_name'] }}</h3>
             </a>
-            <h6 class="price pt-3">
-                <del class="text-muted">850.00৳</del><span class="ps-1" style="color: #ff7400; font-weight: bold;">750.00৳</span>
-            </h6>
-            <p class="text-sm">
-                Live Shopping is one of the fastest-growing trendy fashion lifestyle brands in Bangladesh. We have just started! We aimed to serve our customers with international products at a competitive price range. We deliver premium quality and 100% QC pass products. Live Shopping means Exact Shopping
-            </p>
+            <div class="price pt-3 {{$product['product']['regular_price'] > 0 && $product['product']['regular_price'] != $product['product']['variation']['default_sell_price'] ? '' : 'd-none'}}">
+            <del class="text-muted">{{ number_format($product['product']['variation']['default_sell_price'], 2) }}৳
+            </del>
+            <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{ number_format($product['product']['regular_price'], 2) }}৳</span>
+            </div>                            
+        <div class="price pt-3 {{$product['product']['regular_price'] <= 0 || $product['product']['regular_price'] == $product['product']['variation']['default_sell_price'] ? '' : 'd-none'}}">
+        <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{(number_format($product['product']['variation']['default_sell_price'], 2))}}৳</span>
+        </div>
+
             <div class="quantity-buy d-flex">
                 <div class="quantity">
                     <button class="cart-qty-minus" id="dec" type="button" value="-">-</button>
@@ -77,13 +86,14 @@
                 </a>
             </div>
             <hr>
-            <p><b>SKU:</b> 0613</p>
-            <p><b>Category: </b> Polo Shirt</p>
-  
-            
+            <p><b>SKU:</b> {{ $product['product']['sku'] ?? '' }}</p>
+            <p><b>Category: </b> {{ $product['product']['category'] ?? '' }}</p>
+            <p class="text-sm">
+                {!! $product['product']['description'] !!}
+            </p>
         </div>
-        <div class="col-lg-3 col-12 pt-2">
-            <iframe class="col-12" height="315" src="https://www.youtube.com/embed/SUPexG8CAis" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="col-lg-3 col-12 pt-2 {{$product['product']['video'] ? '' : 'd-none'}}">
+            <iframe class="col-12" height="315" src="https://www.youtube.com/embed/{{$product['product']['video']}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
           <hr>
     </div>

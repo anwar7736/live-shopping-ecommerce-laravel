@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -45,7 +45,10 @@ class ProductController extends Controller
      */
     public function show()
     {
-        return view('product_details');
+        $product_id = request()->get('id');
+        $response = Http::get('https://advertbangladesh.com/testpos/api/product_filter_by_id/'.$product_id);
+        $product = $response->json();
+        return view('product_details', compact('product'));
     }
 
     /**
@@ -56,7 +59,16 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $response = Http::get('https://advertbangladesh.com/testpos/api/product_filter_by_id/'.$id);
+        $product = $response->json();
+        if(request()->ajax())
+        {
+            $view = view('components.quick_modal', compact('product'))->render();
+            return response()->json(['success'=>true, 'view'=> $view]);
+        }
+
+        
+       
     }
 
     /**
@@ -84,11 +96,17 @@ class ProductController extends Controller
     
     public function productByCategory()
     {
-        return view('category_product');
+        $category_id = request()->get('id');
+        $response = Http::get('https://advertbangladesh.com/testpos/api/product_filter_by_category/'.$category_id);
+        $products = $response->json();
+        return view('category_product', compact('products'));
     }
 
-    public function search()
+    public function searchProduct()
     {
-        return view('search_item');
+        $query = request()->get('query');
+        $response = Http::get('https://advertbangladesh.com/testpos/api/product_search/'.$query);
+        $products = $response->json();
+        return view('search_item', compact('products'));
     }
 }

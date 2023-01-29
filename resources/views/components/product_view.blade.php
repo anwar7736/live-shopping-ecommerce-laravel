@@ -7,7 +7,7 @@
                 </a>
             </li>
             <li title="Quick View" class="d-lg-block d-md-block d-none">
-                <a href="#" class="compare" data-bs-toggle="modal" data-bs-target="#product-modal" >
+                <a href="{{ route('product_by_id', $product['id']) }}" class="compare quick-view">
                     <i class="fas fa-search"></i>
                 </a>
             </li>
@@ -49,4 +49,6 @@
         </div>
         </a>
     </div>
+</div>
+<div class="modal fade " id="product-modal" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
 </div>

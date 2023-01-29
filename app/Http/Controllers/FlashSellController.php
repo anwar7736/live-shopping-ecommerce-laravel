@@ -8,8 +8,16 @@ class FlashSellController extends Controller
 {
     public function __invoke()
     {
+
+        return view('flash_sell');
+    }
+
+    public function flashSellProduct()
+    {
         $response = Http::get('https://advertbangladesh.com/testpos/api/flash_sell_product');
-        $sales = $response->json();
-        return view('flash_sell', compact('sales'));
+        $products = $response->json();
+        $view = view('components.single_product', compact('products'))->render();
+        
+        return response()->json(['html'=> $view]);
     }
 }

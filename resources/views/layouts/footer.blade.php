@@ -51,8 +51,8 @@
                     <div class="footer-menu-col mt-5">
                         <form action="#">
                             <div class="input-group d-flex">
-                                <input type="text" placeholder="Search....">
-                                <button type="button" class="text-center p-1"><i class="fas fa-arrow-right"></i></button>
+                                <input type="text" placeholder="Search...">
+                                <button  type="button" class="text-center p-1"><i class="fas fa-arrow-right"></i></button>
                             </div>
                         </form>
                         <div class="contact-info mt-2">
@@ -129,3 +129,21 @@
                 </p>
             </div>
         </footer>
+        <script>
+            // // function handle(e)
+            // // {
+            // //     if(e.keyCode === 13)
+            // //     {
+            // //         window.location.href = "product_search?query="+e.target.value;
+            // //     }
+                
+            // // }
+            // function formSubmit()
+            // {
+            //     let query = document.querySelector('#search');
+            //     console.log(query.value);
+            //         //window.location.href = "product_search?query="+query;
+                
+                
+            // }
+        </script>

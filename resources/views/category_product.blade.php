@@ -8,26 +8,19 @@
                 <div class="shop row">
                     <div class="col-lg-3 col-md-5 col-12 shop-filter-sidebar">
                         <div class="text-end d-block d-md-none d-lg-none position-fixed top-0 end-0">
-                            <button class="btn filter-sidebar-dismiss"><i class="far fa-times-circle display-5"></i></button>
+                            <button class="btn filter-sidebar-dismiss d-none"><i class="far fa-times-circle display-5"></i></button>
                         </div>
                         <div class="category mb-3 sidebar-box">
                             <h5 class="text-cap">Product Categories</h5>
                             <ul>
-                                <li><a href="#">Accessories</a></li>
-                                <li><a href="#">Blazer</a></li>
-                                <li><a href="#">Fb set</a></li>
-                                <li><a href="#">Flash Sale</a></li>
-                                <li><a href="#">Panjabi</a></li>
-                                <li><a href="#">Polo Shirt</a></li>
-                                <li><a href="#">Shirt</a></li>
-                                <li><a href="#">Shoes</a></li>
-                                <li><a href="#">Sweat Shirt</a></li>
-                                <li><a href="#">T-Shirt</a></li>
-                                <li><a href="#">Vaucher Card</a></li>
-                                <li><a href="#">Watches</a></li>
+                                @foreach(\Cache::get('categories') as $category)
+                                    <li>
+                                        <a href="{{ route('product.category', ['id'=>$category['id']]) }}">{{ $category['name'] }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
-                        <div class="price-range sidebar-box mb-4">
+                        <div class="price-range sidebar-box mb-4 d-none">
                             <div class="price-wrapper">
                                 <fieldset class="filter-price">
                                  
@@ -51,7 +44,7 @@
                               </div>
                         </div>
 
-                        <div class="sidebar-box filter-by-color mb-4">
+                        <div class="sidebar-box filter-by-color mb-4 d-none">
                             <h5 class="title text-cap">Filter By Color</h5>
                             <div class="color-box">
                                 <a class="color d-flex justify-content-between text-decoration-none text-dark p-1">
@@ -101,7 +94,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="mb-3 filter-by-size sidebar-box">
+                        <div class="mb-3 filter-by-size sidebar-box d-none">
                             <h5 class="title text-cap">Filter By Size</h5>
                             <div class="size-box">
                                 <a class="size d-flex justify-content-between text-decoration-none text-dark p-1">
@@ -155,7 +148,7 @@
                                   <li class="breadcrumb-item active" aria-current="page">Shop</li>
                                 </ol>
                               </nav>
-                            <nav class="navbar">
+                            <nav class="navbar d-none">
                                 <a href="#" class="nav-link me-3 font-lg d-none d-md-none d-lg-block" id="product-12">
                                     <i class="fas fa-bars"></i> 
                                 </a>
@@ -184,7 +177,7 @@
                                 </a>
                             </nav>
                         </div>
-                        <div class="filter-dropdown">
+                        <div class="filter-dropdown d-none">
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-12 sort-by pb-3">
                                     <h5>Sort By</h5>
@@ -290,9 +283,12 @@
                             </div>
                         </div>
                         <div class="all-products row deal-day-row">
-                        @for($i = 0; $i < 8; $i++)
-                            @include('components.product_view', ['class'=>'col-lg-3 col-md-3 col-6 product p-2'])
-                        @endfor
+                        @foreach($products as $product)
+                            @include('components.product_view', [
+                                'class'=>'col-lg-3 col-md-3 col-6 product p-2',
+                                'product' => $product
+                                ])
+                        @endforeach
                         </div>
                     </div>
                 </div>
