@@ -54,7 +54,7 @@
                         <li class="cart d-none d-md-none d-lg-block">
                             <a href="{{ route('cartlist') }}">
                                 <span class="menu-cart-icon"><i class="fas fa-shopping-cart"></i></span>
-                                <span><span>0</span> items</span>
+                                <span><span id="cart_item_count">0</span> items</span>
                             </a>
                         </li>
                         <li class="cart-sm d-block d-md-block d-lg-none">
@@ -168,7 +168,7 @@
                     <li class="menu-items-container d-none d-md-none d-lg-block">
                         <ul class="d-flex menu-items">
                             <li class="nav-item">
-                                <a href="/{{ route('home') }}" class="nav-link active">Home</a>
+                                <a href="{{ route('home') }}" class="nav-link active">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('shop') }}" class="nav-link">Shop</a>
@@ -187,7 +187,7 @@
                     <li class="cart d-none d-md-none d-lg-block">
                         <a href="#">
                             <span class="menu-cart-icon"><i class="fas fa-shopping-cart"></i></span>
-                            <span><span>0</span> items</span>
+                            <span><span id="cart_item_count">0</span> items</span>
                         </a>
                     </li>
                     <li class="cart-sm d-block d-md-block d-lg-none">

@@ -16,8 +16,23 @@ class ShopController extends Controller
     }
     public function shopProduct()
     {
-        $response = Http::get('https://advertbangladesh.com/testpos/api/shop_product_list');
-        $products = $response->json();
+        $products = "";
+        $category = request()->categories;
+        $color = request()->colors;
+        $size = request()->sizes;        
+        $min = request()->from;        
+        $max = request()->to;        
+        if(!empty($category) || !empty($color) || !empty($size) || !empty($min && $max))
+        {
+            $response = Http::get('https://advertbangladesh.com/testpos/api/product_filter?category='.$category.'&color='.$color.'&size='.$size.'&min='.$min.'&max='.$max);
+            $products = $response->json();
+        }
+
+        else{
+            $response = Http::get('https://advertbangladesh.com/testpos/api/shop_product_list');
+            $products = $response->json();
+        }
+
 
         $view = view('components.single_product', compact('products'))->render();
 

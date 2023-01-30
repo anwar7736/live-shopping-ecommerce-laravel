@@ -125,13 +125,17 @@ $(document).ready(function () {
   });
 
   var counter = 1;
-  var qty = $("#qty");
-  $("#inc").click(function () {
-    var inc = counter++;
-
-    qty.val(inc);
+  var qty = $(document).find("input.qty");
+  $(document).on("click", "button.cart-qty-plus", function () {
+    if (qty.val() < 9) {
+      var inc = counter++;
+    } else {
+      inc = counter;
+    }
+      qty.val(inc);
   });
-  $("#dec").click(function () {
+
+  $(document).on("click", "button.cart-qty-minus", function () {
     if (qty.val() > 1) {
       var dec = counter--;
     } else {

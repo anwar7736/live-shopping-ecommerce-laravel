@@ -70,9 +70,9 @@
 
             <div class="quantity-buy d-flex">
                 <div class="quantity">
-                    <button class="cart-qty-minus" id="dec" type="button" value="-">-</button>
-                    <input type="text" name="qty" id="qty" class="qty" maxlength="12" value="0" class="input-text qty" />
-                    <button class="cart-qty-plus" type="button" id="inc" value="+">+</button>
+                    <button class="cart-qty-minus" class="dec" type="button">-</button>
+                    <input type="text" name="qty" max="10" min="1" value="1" class="input-text qty" />
+                    <button class="cart-qty-plus" type="button" class="inc">+</button>
                     
                 </div>
                 <button class="btn">Buy</button>

@@ -81,18 +81,10 @@
                         </div>
                     </div>
                     <div class="tab-container" id="tab1con">
-                        <div class="owl-carousel cat-carousel product-items">
-                            @foreach($summer_trendy['hot'] as $summer_hot)
-                                @include('components.carousel_slider', ['product'=>$summer_hot])
-                            @endforeach
-                        </div>
+                       
                     </div>
                     <div class="tab-container" id="tab2con">
-                        <div class="owl-carousel cat-carousel product-items">
-                            @foreach($summer_trendy['new'] as $summer_new)
-                                @include('components.carousel_slider', ['product'=>$summer_new])
-                            @endforeach
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -133,18 +125,10 @@
                         </div>
                     </div>
                     <div class="tab-container" id="tab3con">
-                        <div class="owl-carousel cat-carousel product-items">
-                            @foreach($best_deal['hot'] as $best_hot)
-                                @include('components.carousel_slider', ['product'=>$best_hot])
-                            @endforeach
-                        </div>
+
                     </div>
                     <div class="tab-container" id="tab4con">
-                        <div class="owl-carousel cat-carousel product-items">
-                           @foreach($best_deal['new'] as $best_new)
-                                @include('components.carousel_slider', ['product'=>$best_new])
-                            @endforeach
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -185,76 +169,24 @@
                         </div>
                     </div>
                     <div class="tab-container" id="tab5con">
-                        <div class="owl-carousel cat-carousel product-items">
-                           @foreach($export_quality['hot'] as $export_hot)
-                                @include('components.carousel_slider', ['product'=>$export_hot])
-                            @endforeach
-                        </div>
+
                     </div>
                     <div class="tab-container" id="tab6con">
-                        <div class="owl-carousel cat-carousel product-items">
-                            @foreach($export_quality['new'] as $export_new)
-                                @include('components.carousel_slider', ['product'=>$export_new])
-                            @endforeach
-                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- Export Quality section end  -->
-<!-- gift card section start  -->
-<!-- <section class="d-none">
-    <div class="container-md-fluid container-lg">
-        <div class="gift-card global-cat-sec">
-            <div class="section-cat-title">
-                <h2>PREMIUM EXPORTS</h2>
-            </div>
-            
-        </div>
-        <div class="owl-carousel gift-card-owl mt-4 mb-5">
-            <div>
-                <div class="image">
-                    <img src="assets/images/gift-card/200tk.jpg" alt="200taka gift card" class="gift-card-img col-12">
-                </div>
-            </div>
-            <div>
-                <div class="image">
-                    <img src="assets/images/gift-card/500tk.jpg" alt="200taka gift card" class="gift-card-img col-12">
-                </div>
-            </div>
-            <div>
-                <div class="image">
-                    <img src="assets/images/gift-card/1000tk.jpg" alt="200taka gift card" class="gift-card-img col-12">
-                </div>
-            </div>
-            <div>
-                <div class="image">
-                    <img src="assets/images/gift-card/2000tk.jpg" alt="200taka gift card" class="gift-card-img col-12">
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!-- gift card section end  -->
 
-<!-- All Products Grid Section start  -->
 <section>
     <div class="container-md-fluid container-lg">
         <div class="liner-continer">
             <h4 class="title">DEALS OF THE DAY</h4> 
         </div>
-        <div class="all-products">
-            <div class="row deal-day-row">
-            @foreach($deal_days as $row)
-                @include('components.product_view', 
-                [
-                    'class'=> 'col-lg-3 col-md-3 col-6 product p-2',
-                    'product'=> $row
-                ])
-            @endforeach
-            </div>
+        <div class="all-products product_data">
+           
         </div>
     </div>
 </section>
@@ -264,4 +196,71 @@
 @push('js')
     <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('assets/slick/slick.min.js')}}"></script>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url: '{{ route("dealOfTheDay") }}',
+                method: "GET",
+                success: function(res)
+                {
+                    if(res.html)
+                    {
+                        $('.product_data').html(res.html);
+                    }
+                    
+                }
+            });            
+            
+            $.ajax({
+                url: '{{ route("summerTrendy") }}',
+                method: "GET",
+                success: function(res)
+                {
+                    if(res.summer_hot)
+                    {
+                        $(document).find('div#tab1con').html(res.summer_hot);
+                    }                    
+                    if(res.summer_new)
+                    {
+                        $(document).find('div#tab2con').html(res.summer_new);
+                    }
+                    
+                }
+            });            
+            
+            $.ajax({
+                url: '{{ route("bestDeal") }}',
+                method: "GET",
+                success: function(res)
+                {
+                    if(res.best_hot)
+                    {
+                        $(document).find('div#tab3con').html(res.best_hot);
+                    }                    
+                    if(res.best_new)
+                    {
+                        $(document).find('div#tab4con').html(res.best_new);
+                    }
+                    
+                }
+            });            
+            
+            $.ajax({
+                url: '{{ route("exportQuality") }}',
+                method: "GET",
+                success: function(res)
+                {
+                    if(res.export_hot)
+                    {
+                        $(document).find('div#tab5con').html(res.export_hot);
+                    }                    
+                    if(res.export_new)
+                    {
+                        $(document).find('div#tab6con').html(res.export_new);
+                    }
+                    
+                }
+            });
+        });
+    </script>
 @endpush

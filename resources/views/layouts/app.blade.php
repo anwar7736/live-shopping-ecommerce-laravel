@@ -9,6 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/bootstrap/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/toastr.min.css')}}">
     <!-- <link rel="stylesheet" media="all" href="{{asset('assets/css/media.css')}}"> -->
     @yield('css')
 </head>
@@ -27,7 +28,7 @@
                         <span>
                             <i class="fas fa-shopping-cart"></i>
                         </span>
-                    <span class="badge bg-secondary">2</span>
+                    <span class="badge bg-secondary" id="cart_item_count">0</span>
                     </div>
                     <button class="fixed-scroll-bottom" id="scroll-top" style="display: none;">
                         <span>
@@ -42,6 +43,8 @@
     <script src="{{asset('assets/bootstrap/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/js/main.js')}}"></script>
     <script src="{{asset('assets/js/product.js')}}"></script>
+    <script src="{{asset('assets/js/cart.js')}}"></script>
+    <script src="{{asset('assets/js/toastr.min.js')}}"></script>
     <script>        
         // $(function(){
         //    setTimeout(() => {
@@ -55,7 +58,6 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
     </script>
     @stack('js')
 </body>

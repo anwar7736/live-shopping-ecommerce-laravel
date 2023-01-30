@@ -375,3 +375,12 @@
     cursor: pointer;
     padding: 10px;
 }
+
+.size-box .size:hover .product-items, .selected-item{
+  background: #FF7400;
+  border-color: #FF7400;
+  color: white;
+}
+.selected-category{
+  color: #FF7400 !important;
+}
