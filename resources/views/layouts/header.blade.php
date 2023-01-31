@@ -10,9 +10,9 @@
                         </ul>
                         <div class="topbar-right">
                             <ul class="topbar-right me-1 mb-0">
-                                <li><a href="{{ route('compare') }}" class="top-r-link"><i class="fas fa-random"></i><span class="badge badge-pill">1</span> <span class="compare">Compare</span></a></li>
-                                <li><a href="{{ route('wishlist') }}" class="top-r-link"><i class="far fa-heart"></i><span class="badge badge-pill">1</span> <span class="compare">Wishlist</span></a></li>
-                                <li><a href="#" class="top-r-link">Login/Register</a></li>
+                                <li class="d-none"><a href="#" class="top-r-link"><i class="fas fa-random"></i><span class="badge badge-pill">1</span> <span class="compare">Compare</span></a></li>
+                                <li class="d-none"><a href="#" class="top-r-link"><i class="far fa-heart"></i><span class="badge badge-pill">1</span> <span class="compare">Wishlist</span></a></li>
+                                <li class="d-none"><a href="#" class="top-r-link">Login/Register</a></li>
                             </ul>
                         </div>
                      </div>
@@ -52,14 +52,14 @@
                             </ul>
                         </li>
                         <li class="cart d-none d-md-none d-lg-block">
-                            <a href="{{ route('cartlist') }}">
+                            <a href="{{ route('cart.index') }}">
                                 <span class="menu-cart-icon"><i class="fas fa-shopping-cart"></i></span>
-                                <span><span id="cart_item_count">0</span> items</span>
+                                <span><span id="cart_item_count">{{ getTotalCart() }}</span> items</span>
                             </a>
                         </li>
                         <li class="cart-sm d-block d-md-block d-lg-none">
-                            <a href="{{ route('cartlist') }}">
-                                <i class="fas fa-shopping-bag"></i><span class="badge badge-pill">1</span>
+                            <a href="{{ route('cart.index') }}">
+                                <i class="fas fa-shopping-bag"></i><span class="badge badge-pill">{{ getTotalCart() }}</span>
                             </a>
                         </li>
                     </ul>
@@ -187,7 +187,7 @@
                     <li class="cart d-none d-md-none d-lg-block">
                         <a href="#">
                             <span class="menu-cart-icon"><i class="fas fa-shopping-cart"></i></span>
-                            <span><span id="cart_item_count">0</span> items</span>
+                            <span><span id="cart_item_count">{{ getTotalCart() }}</span> items</span>
                         </a>
                     </li>
                     <li class="cart-sm d-block d-md-block d-lg-none">

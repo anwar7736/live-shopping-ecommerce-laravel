@@ -41,10 +41,15 @@ Route::controller(ProductController::class)->group(function(){
     Route::get('/product_search','searchProduct')->name('product.search');
 });
 
+
+Route::resource('cart', CartController::class);
 Route::controller(CartController::class)->group(function(){
-    Route::get('/cartlist', 'index')->name('cartlist');
-    Route::post('/add-to-cart', 'store')->name('cart.store');
+    Route::get('cart-items','getCartList')->name('getCartList');
+    Route::get('/update-size','updateItemSize')->name('updateItemSize');
+    Route::post('checkout','checkout')->name('checkout');
 });
+
+
 
 Route::get('/about_us', AboutUsController::class)->name('about.us');
 Route::get('/contact_us', ContactUsController::class)->name('contact.us');

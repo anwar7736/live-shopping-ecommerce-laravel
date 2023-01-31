@@ -6,7 +6,7 @@ class Util {
     {
         $response = Http::get('https://advertbangladesh.com/testpos/api/get_stock_qty/'.$id.'/'.$size);
         $stock = $response->json();
-        return $stock['qty'];
+        return (int)$stock['qty'];
     }
 }
 

@@ -43,14 +43,17 @@
                         <a href="{{route('product.details', ['id'=>$product['id'] ?? 1])}}" class="text-decoration-none text-dark">
                             <h3 class="product_name">{{$product['product'] ?? $product['default_name']}}</h3>
                         </a>
-                        <div class="price {{$product['regular_price'] > 0 && $product['regular_price'] != $product['variation']['default_sell_price'] ? '' : 'd-none'}}">
+                        @if($product['regular_price'] > 0 && $product['regular_price'] != $product['variation']['default_sell_price'])
+                            <div class="price pt-3">
                             <del class="text-muted">{{ number_format($product['variation']['default_sell_price'], 2) }}৳
                             </del>
                             <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{ number_format($product['regular_price'], 2) }}৳</span>
-                            </div>                            
-                        <div class="price {{$product['regular_price'] <= 0 || $product['regular_price'] == $product['variation']['default_sell_price'] ? '' : 'd-none'}}">
-                        <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{(number_format($product['variation']['default_sell_price'], 2))}}৳</span>
-                        </div>
+                            </div> 
+                        @else
+                            <div class="price pt-3">
+                            <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{(number_format($product['variation']['default_sell_price'], 2))}}৳</span>
+                            </div>
+                        @endif
                         <p class="text-sm description">
                             {!! $product['description'] !!}
                         </p>
@@ -71,12 +74,13 @@
                         @endif
                         <div class="quantity-buy d-flex">
                             <div class="quantity">
-                                <button class="cart-qty-minus" class="dec" type="button">-</button>
-                                <input type="text" name="qty" max="10" value="1" class="input-text qty" />
-                                <button class="cart-qty-plus" type="button" class="inc">+</button>
+                                <button class="cart-qty-minus" type="button">-</button>
+                                <input type="number" name="qty" max="10" value="1" class="input-text qty" />
+                                <button class="cart-qty-plus" type="button">+</button>
                                 
                             </div>
                             <input type="hidden" name="product" value="{{$product['id']}}">
+                            <input type="hidden" name="type" value="{{$product['type']}}">
                             <button type="submit" class="btn cart_btn">Add To Cart</button>
                         </form>
                         </div>

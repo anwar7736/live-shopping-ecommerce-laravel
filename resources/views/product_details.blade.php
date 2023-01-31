@@ -12,9 +12,12 @@
     <div class="row">
         <div class="col-lg-3 col-md-6 col-12 pe-0 product-image-col pt-2">
             <div class="image single-product-images mb-3">
-                <div class="discount-tag {{ calculateDiscount($product['product']) <= 0 ? 'd-none' : ''}}">
-                    - {{calculateDiscount($product['product'])}}%
-                </div>
+                @if(calculateDiscount($product['product']) > 0)
+                    <div class="discount-tag">
+                        - {{calculateDiscount($product['product'])}}%
+                    </div>
+                @endif
+                
                 <div class="owl-carousel slider-for-product">
                     @if($product['product']['image_url'])
                         <div data-hash="slide1">
@@ -59,25 +62,33 @@
             <a href="#" class="text-decoration-none text-dark">
                 <h3>{{ $product['product']['product'] ?? $product['product']['default_name'] }}</h3>
             </a>
-            <div class="price pt-3 {{$product['product']['regular_price'] > 0 && $product['product']['regular_price'] != $product['product']['variation']['default_sell_price'] ? '' : 'd-none'}}">
-            <del class="text-muted">{{ number_format($product['product']['variation']['default_sell_price'], 2) }}৳
-            </del>
-            <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{ number_format($product['product']['regular_price'], 2) }}৳</span>
-            </div>                            
-        <div class="price pt-3 {{$product['product']['regular_price'] <= 0 || $product['product']['regular_price'] == $product['product']['variation']['default_sell_price'] ? '' : 'd-none'}}">
-        <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{(number_format($product['product']['variation']['default_sell_price'], 2))}}৳</span>
-        </div>
+            @if($product['product']['regular_price'] > 0 && $product['product']['regular_price'] != $product['product']['variation']['default_sell_price'])
+                <div class="price pt-3">
+                <del class="text-muted">{{ number_format($product['product']['variation']['default_sell_price'], 2) }}৳
+                </del>
+                <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{ number_format($product['product']['regular_price'], 2) }}৳</span>
+                </div> 
+            @else
+                <div class="price pt-3">
+                <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{(number_format($product['product']['variation']['default_sell_price'], 2))}}৳</span>
+                </div>
+            @endif
 
             <div class="quantity-buy d-flex">
                 <div class="quantity">
                     <button class="cart-qty-minus" class="dec" type="button">-</button>
-                    <input type="text" name="qty" max="10" min="1" value="1" class="input-text qty" />
+                    <input type="number" name="qty" max="10" min="1" value="1" class="input-text qty" />
                     <button class="cart-qty-plus" type="button" class="inc">+</button>
                     
                 </div>
-                <button class="btn">Buy</button>
+                <a href="" class="add_to_cart">
+                    <input type="hidden" name="product" value="{{ $product['product']['id'] }}">
+                    <button class="btn">
+                        BUY
+                    </button>
+            </a>
             </div>
-            <div class="products-options mt-4 d-flex">
+            <div class="products-options mt-4 d-flex d-none">
                 <a href="#" class="text-decoration-none text-dark me-3">
                     <b><i class="fas fa-random"></i> <span class="sm-none">Compare</span></b>
                 </a>

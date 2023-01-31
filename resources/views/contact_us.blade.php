@@ -103,7 +103,7 @@
                     <div class="col-lg-6 col-md-12 col-12 contact-form">
                         <h6>INFORMATION ABOUT US</h6>
                         <h3>CONTACT US FOR ANY QUESTIONS</h3>
-                        <form class="mt-5">
+                        <form class="mt-5" onsubmit="return false">
                           <div class="row">
                             <div class="mb-3 col-lg-6 col-md-6 col-12 text-muted">
                                 <label for="name">Your Name</label>

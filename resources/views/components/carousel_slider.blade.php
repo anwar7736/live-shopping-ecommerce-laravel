@@ -1,8 +1,10 @@
 <div class="product p-2">
     <div class="images">
-        <div class="discount-tag {{ calculateDiscount($product) <= 0 ? 'd-none' : ''}}">
-            - {{calculateDiscount($product)}}%
-        </div>
+        @if(calculateDiscount($product) > 0)
+            <div class="discount-tag">
+                - {{calculateDiscount($product)}}%
+            </div>
+        @endif
         <a href="{{route('product.details', ['id'=>$product['id']])}}">
             <img src="{{$product['image_url']}}" alt="Image" class="main-image">
         </a>
@@ -28,15 +30,19 @@
     </div>
     <div class="product-details text-center pt-2">
         <a href="{{route('product.details', ['id'=>$product['id']])}}" class="text-dark" style="text-decoration: none; font-weight: 600;">{{$product['product'] ?? $product['default_name']}}</a>
-        <div class="price {{$product['regular_price'] > 0 && $product['regular_price'] != $product['variation']['default_sell_price'] ? '' : 'd-none'}}">
+        @if($product['regular_price'] > 0 && $product['regular_price'] != $product['variation']['default_sell_price'])
+            <div class="price pt-3">
             <del class="text-muted">{{ number_format($product['variation']['default_sell_price'], 2) }}৳
             </del>
             <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{ number_format($product['regular_price'], 2) }}৳</span>
-            </div>                            
-        <div class="price {{$product['regular_price'] <= 0 || $product['regular_price'] == $product['variation']['default_sell_price'] ? '' : 'd-none'}}">
-        <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{(number_format($product['variation']['default_sell_price'], 2))}}৳</span>
-        </div>
-        <a href="#" data-bs-toggle="modal" data-bs-target="#buy-to-cart">
+            </div> 
+        @else
+            <div class="price pt-3">
+            <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{(number_format($product['variation']['default_sell_price'], 2))}}৳</span>
+            </div>
+        @endif
+        <a href="" class="add_to_cart">
+            <input type="hidden" name="product" value="{{ $product['id'] }}">
             <div class="button m-auto text-light" >
                 <p><b>
                     BUY NOW

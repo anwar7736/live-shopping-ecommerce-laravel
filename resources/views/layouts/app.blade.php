@@ -21,14 +21,15 @@
                 </div> -->
                 <div class="main-content">
                     @yield('content')
-                    @include('components.checkout_modal')
                     {{--@include('components.quick_modal')--}}
 
-                    <div class="fixed-cart-bottom" data-bs-toggle="modal" data-bs-target="#buy-to-cart">
+                    <div class="modal fade " id="buy-to-cart" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                    </div>
+                    <div class="fixed-cart-bottom checkOutBtn">
                         <span>
                             <i class="fas fa-shopping-cart"></i>
                         </span>
-                    <span class="badge bg-secondary" id="cart_item_count">0</span>
+                    <span class="badge bg-secondary" id="cart_item_count">{{ getTotalCart() }}</span>
                     </div>
                     <button class="fixed-scroll-bottom" id="scroll-top" style="display: none;">
                         <span>
