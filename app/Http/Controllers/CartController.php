@@ -14,7 +14,7 @@ class CartController extends Controller
 
     public function index()
     {
-       return session()->put('cart', []);
+    //    return session()->put('cart', []);
         $cart = session()->get('cart', []);
         return view('cartlist', compact('cart'));
     }
@@ -50,7 +50,7 @@ class CartController extends Controller
             }
 
             $cart[$id]['quantity'] = $new_stock;
-            $cart[$id]['size'] = $size;
+            $cart[$id]['size'] = $size ?? '';
         } 
         
         else {
@@ -76,13 +76,12 @@ class CartController extends Controller
     public function edit($id)
     {
         $new_qty = request()->get('quantity');
-        $stock =  $this->util->checkProductStock($id);
+        $cart = session()->get('cart', []);
+        $stock =  $this->util->checkProductStock($id, $cart[$id]['size']);
         if($new_qty > $stock)
         {
             return response()->json(['success' => false, 'msg'=> 'Product '.$stock.' pcs available']);
         }
-
-        $cart = session()->get('cart', []);
 
         $cart[$id]['quantity'] = $new_qty;
         session()->put('cart', $cart);
@@ -118,12 +117,12 @@ class CartController extends Controller
         $id = request()->product;
         $size = request()->size;
         $cart = session()->get('cart', []);
-
+        $stock =  $this->util->checkProductStock($id,  $size);
         if(isset($cart[$id]))
         {
             $cart[$id]['size'] = $size;
             session()->put('cart', $cart);
-            return response()->json(['success' => true, 'msg'=> 'Product size updated']);
+            return response()->json(['success' => true, 'msg'=> 'Product size updated', 'stock'=>$stock]);
         }
         else{
             return response()->json(['success' => false, 'msg'=> 'Something went wrong!']);

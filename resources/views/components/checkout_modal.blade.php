@@ -15,9 +15,10 @@
                         {{ $item['name']}}
                     </b></p>
                     <div class="quantity">
-                        <button id="cart-qty-minus btn" type="button">-</button>
+                        <button class="cart-qty-minus btn" type="button">-</button>
                         <input type="number" name="qty" min="1" max="10" value="{{ $item['quantity'] }}" class="input-text qty cart_qty" />
-                        <button id="cart-qty-plus btn" type="button" >+</button>
+                        <input type="hidden" name="cart_id" value="{{ $key }}"/>
+                        <button class="cart-qty-plus btn" type="button" >+</button>
                     </div>
                     @if(!empty($item['sizes']))
                     <strong class="text-sm variation-section_{{$key}}">

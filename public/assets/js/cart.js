@@ -70,10 +70,15 @@ $(function(){
     $(document).on('blur', '.cart_qty', function(){
         let quantity = $(this).val();
         let id = $(this).closest('div').find('input[name="cart_id"]').val();
-        cartQtyUpdate(id, quantity);
+        if(quantity > 10)
+        {
+            toastr.error('Quantity will not be greater than 10!');
+
+        }
+       else cartQtyUpdate(id, quantity);
     });  
     
-    $(document).on('click', '#cart-qty-plus', function(){
+    $(document).on('click', '.cart-qty-plus', function(){
         let quantity = $(this).closest('div').find('input.cart_qty');
         let id = $(this).closest('div').find('input[name="cart_id"]').val();
         if(quantity.val() >=10)
@@ -85,7 +90,7 @@ $(function(){
         cartQtyUpdate(id, new_qty);
     });    
     
-    $(document).on('click', '#cart-qty-minus', function(){
+    $(document).on('click', '.cart-qty-minus', function(){
         let quantity = $(this).closest('div').find('input.cart_qty');
         let id = $(this).closest('div').find('input[name="cart_id"]').val();
         if(quantity.val() <=1)
@@ -106,11 +111,7 @@ $(function(){
     function cartQtyUpdate(id, quantity)
     {
         calculateTotal();
-        if(quantity > 10)
-        {
-            toastr.error('Quantity will not be greater than 10!');
-        }
-        else {
+       
                 $.ajax({
                 url: "cart/"+id+"/edit",
                 method: "GET",
@@ -125,7 +126,7 @@ $(function(){
                 
                 }
             });
-        }
+        
     }
 
     function calculateTotal()
@@ -241,6 +242,7 @@ $(function(){
                 if(res.success)
                 {
                     $('strong.variation-section_'+product).find('span.size-validation').addClass('d-none');
+                    $('strong.variation-section_'+product).find('span.stock-alert').removeClass('d-none').text(`Stock ${res.stock} pcs available!`);
                     toastr.success(res.msg);
                 }
                 else{

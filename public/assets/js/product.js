@@ -1,4 +1,6 @@
 $(function(){
+
+    //Open Quick View Modal
     $(document).on('click', 'a.quick-view', function(e){
         e.preventDefault();
         let url = $(this).attr('href');
@@ -16,16 +18,19 @@ $(function(){
         });
     });
 
+    //Min Price Change
     $(document).on('change', '#lower', function(){
         $(document).find('input#one').val($(this).val());
         productFilter();
     });   
-    
+
+    //Max Price Change
     $(document).on('change', '#upper', function(){
         $(document).find('input#two').val($(this).val());
         productFilter();
     });
 
+    //Category Change
     $(document).on('click', '.category_id', function(e){
         e.preventDefault();
         if( $(this).closest('li.category_item').hasClass('bg-warning'))
@@ -39,6 +44,7 @@ $(function(){
         
     });
 
+    //Color Change
     $(document).on('click', '.color', function(e){
         e.preventDefault();
         if($(this).find('.color-bg').hasClass('selected-item'))
@@ -52,6 +58,7 @@ $(function(){
         
     });    
     
+    //Size Change
     $(document).on('click', '.size', function(e){
         e.preventDefault();
         if($(this).find('div.product-items').hasClass('selected-item'))
@@ -65,6 +72,7 @@ $(function(){
 
     });
 
+    //Product Filter Method
     function productFilter()
     {
         let from = $(document).find('input#one').val();
@@ -89,5 +97,28 @@ $(function(){
         });
     }
 
-    
+    //Open Find Store Modal
+    $(document).on('click', 'button.findStore', function(){
+        let product =   $(this).closest('div').find('input[name="product"]').val();
+        $.ajax({
+            url: "/find-store",
+            method: "GET",
+            data: {product},
+            dataType: "JSON",
+            success: function(res)
+            {
+                if(res.html)
+                {
+
+                   if(res.locations.length > 0)
+                   {
+                        $("#find-store-modal").html(res.html).modal('show');
+                   }
+
+                   else toastr.error('No location found!');
+                    
+                }
+            }
+        });
+    });
 });

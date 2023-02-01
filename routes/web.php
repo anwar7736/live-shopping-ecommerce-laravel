@@ -26,6 +26,7 @@ Route::controller(HomeController::class)->group(function(){
 Route::controller(ShopController::class)->group(function(){
     Route::get('/shop', 'index')->name('shop');
     Route::get('/shop-product-list', 'shopProduct')->name('shopProduct');
+    Route::get('/find-store', 'findStore');
 });
 
 Route::controller(FlashSellController::class)->group(function(){

@@ -74,9 +74,9 @@
                         @endif
                         <div class="quantity-buy d-flex">
                             <div class="quantity">
-                                <button class="cart-qty-minus" type="button">-</button>
+                                <button id="cart-qty-minus" type="button">-</button>
                                 <input type="number" name="qty" max="10" value="1" class="input-text qty" />
-                                <button class="cart-qty-plus" type="button">+</button>
+                                <button id="cart-qty-plus" type="button">+</button>
                                 
                             </div>
                             <input type="hidden" name="product" value="{{$product['id']}}">

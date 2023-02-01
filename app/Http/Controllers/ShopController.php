@@ -38,4 +38,15 @@ class ShopController extends Controller
 
         return response()->json(['html'=> $view]);
     }
+
+    public function findStore()
+    {
+        $product = request()->product;
+        $response = Http::get('https://advertbangladesh.com/testpos/api/location_wise_stock/'.$product);
+        $locations = $response->json();
+        dd($locations);
+        $view = view('components.find_modal', compact('locations'))->render();
+
+        return response()->json(['success'=>true, 'html'=> $view, 'locations'=>$locations]);
+    }
 }

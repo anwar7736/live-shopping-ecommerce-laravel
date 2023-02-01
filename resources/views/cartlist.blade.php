@@ -62,10 +62,10 @@
                             <div class="cart-quantiy" data-title="Quantity">
                                 <div class="quantity-buy">
                                     <div class="quantity">
-                                        <button id="cart-qty-minus" type="button">-</button>
+                                        <button class="cart-qty-minus" type="button">-</button>
                                         <input type="number" name="qty[]" min="1" max="10" value="{{ $item['quantity'] }}" class="input-text qty cart_qty" />
                                         <input type="hidden" name="cart_id" value="{{ $key }}"/> 
-                                        <button id="cart-qty-plus" type="button">+</button>
+                                        <button class="cart-qty-plus" type="button">+</button>
                                         
                                     </div>
                                 </div>

@@ -125,24 +125,24 @@ $(document).ready(function () {
   });
 
   var counter = 1;
-  var qty = $(document).find("input.qty");
-  $(document).on("click", "button.cart-qty-plus", function () {
-    if (qty.val() < 9) {
-      var inc = counter++;
+  $(document).on("click", "button#cart-qty-plus", function () {
+    var qty = $(this).closest('div').find("input.qty");
+    if (qty.val() < 10) {
+      qty.val(Number(qty.val())+1);
     } else {
-      inc = counter;
+      return;
     }
-      qty.val(inc);
+      
   });
 
-  $(document).on("click", "button.cart-qty-minus", function () {
+  $(document).on("click", "button#cart-qty-minus", function () {
+    var qty = $(this).closest('div').find("input.qty");
     if (qty.val() > 1) {
-      var dec = counter--;
+      qty.val(Number(qty.val())-1);
     } else {
-      dec = 1;
+      return;
     }
 
-    qty.val(dec);
   });
 
   $("#form-target-l").click(function(){

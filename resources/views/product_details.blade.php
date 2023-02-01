@@ -76,17 +76,21 @@
 
             <div class="quantity-buy d-flex">
                 <div class="quantity">
-                    <button class="cart-qty-minus" class="dec" type="button">-</button>
+                    <button id="cart-qty-minus" class="dec" type="button">-</button>
                     <input type="number" name="qty" max="10" min="1" value="1" class="input-text qty" />
-                    <button class="cart-qty-plus" type="button" class="inc">+</button>
+                    <button id="cart-qty-plus" type="button" class="inc">+</button>
                     
                 </div>
                 <a href="" class="add_to_cart">
                     <input type="hidden" name="product" value="{{ $product['product']['id'] }}">
-                    <button class="btn">
+                    <button class="btn px-4 pt-3 pb-2">
                         BUY
-                    </button>
-            </a>
+                    </button>                    
+
+            </a>                    
+            <button class="btn px-2 pt-3 pb-2 bg-dark findStore" style="margin-left:10px">
+                Find Store
+            </button>
             </div>
             <div class="products-options mt-4 d-flex d-none">
                 <a href="#" class="text-decoration-none text-dark me-3">
@@ -149,10 +153,8 @@
         </div>
     </div>
 </div>
-    <!-- for mobile view  -->
-    
-
-    
+<!--modal start-->
+<div class="modal fade " id="find-store-modal" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true"></div>
 </div>
 </section>
 <!-- Recently view  -->
