@@ -12,7 +12,7 @@ class ShopController extends Controller
         $colors = Http::get('https://advertbangladesh.com/testpos/api/product_sizes_and_colors');
         $max_price = $max->json();
         $sizes_colors = $colors->json();
-        return view('shop', compact('max_price', 'sizes_colors'));
+        return view('shop.index', compact('max_price', 'sizes_colors'));
     }
     public function shopProduct()
     {
@@ -43,9 +43,10 @@ class ShopController extends Controller
     {
         $product = request()->product;
         $response = Http::get('https://advertbangladesh.com/testpos/api/location_wise_stock/'.$product);
-        $locations = $response->json();
-        dd($locations);
-        $view = view('components.find_modal', compact('locations'))->render();
+        $data = $response->json();
+        $product = $data['product'];
+        $locations = $data['locations'];
+        $view = view('components.find_modal', compact('product', 'locations'))->render();
 
         return response()->json(['success'=>true, 'html'=> $view, 'locations'=>$locations]);
     }

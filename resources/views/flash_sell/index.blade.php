@@ -14,6 +14,9 @@
 @endsection
 @section('content')
 <section>
+    <div class="loading">
+        @include('components.loading')
+    </div>
     <div class="container mt-5 mb-5">
         <div class="row deal-day-row product_data">
             
@@ -24,6 +27,7 @@
 @push('js')
 <script>
     $(document).ready(function(){
+        $(document).find('div.loading').removeClass('d-none');
         $.ajax({
             url: '{{ route("flash_sell_product") }}',
             method: "GET",
@@ -31,6 +35,7 @@
             {
                 if(res.html)
                 {
+                    $(document).find('div.loading').addClass('d-none');
                     $('.product_data').html(res.html);
                 }
                 

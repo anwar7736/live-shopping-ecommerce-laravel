@@ -8,6 +8,6 @@ class AboutUsController extends Controller
 {
     public function __invoke()
     {
-        return view('about_us');
+        return view('about.index');
     }
 }

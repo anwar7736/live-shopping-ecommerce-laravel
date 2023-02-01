@@ -37,10 +37,10 @@
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-                        <a href="{{route('product.details', ['id'=>$product['id'] ?? 1])}}" class="btn col-12 view_details">View Details</a>
+                        <a href="{{route('product.details', ['id'=>$product['id']])}}" class="btn col-12 view_details">View Details</a>
                     </div>
                     <div class="modal-product-details col-6 pt-3">
-                        <a href="{{route('product.details', ['id'=>$product['id'] ?? 1])}}" class="text-decoration-none text-dark">
+                        <a href="{{route('product.details', ['id'=>$product['id']])}}" class="text-decoration-none text-dark">
                             <h3 class="product_name">{{$product['product'] ?? $product['default_name']}}</h3>
                         </a>
                         @if($product['regular_price'] > 0 && $product['regular_price'] != $product['variation']['default_sell_price'])

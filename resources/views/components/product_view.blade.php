@@ -30,7 +30,7 @@
     </div>
     
     <div class="product-details text-center pt-2">
-        <a href="{{route('product.details', ['id'=>$id ?? 1])}}" class="text-dark" style="text-decoration: none; font-weight: 600;">{{$product['product'] ?? $product['default_name']}}</a>
+        <a href="{{route('product.details', ['id'=>$product['id']])}}" class="text-dark" style="text-decoration: none; font-weight: 600;">{{$product['product'] ?? $product['default_name']}}</a>
         @if($product['regular_price'] > 0 && $product['regular_price'] != $product['variation']['default_sell_price'])
             <div class="price pt-3">
             <del class="text-muted">{{ number_format($product['variation']['default_sell_price'], 2) }}৳

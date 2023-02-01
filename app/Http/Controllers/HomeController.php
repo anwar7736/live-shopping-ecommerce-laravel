@@ -24,7 +24,7 @@ class HomeController extends Controller
         $response = Http::get('https://advertbangladesh.com/testpos/api/category_list');
         $categories = $response->json();
         \Cache::put('categories', $categories['categories']);
-        return view('home', compact(
+        return view('home.index', compact(
             'home_sliders', 
             'winter_category',
             'best_category',

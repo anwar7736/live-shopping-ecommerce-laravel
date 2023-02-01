@@ -8,6 +8,6 @@ class ReturnController extends Controller
 {
     public function __invoke()
     {
-        return view('return');
+        return view('return.index');
     }
 }

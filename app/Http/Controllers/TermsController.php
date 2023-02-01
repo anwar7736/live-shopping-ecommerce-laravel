@@ -8,6 +8,6 @@ class TermsController extends Controller
 {
     public function __invoke()
     {
-        return view('terms');
+        return view('terms.index');
     }
 }

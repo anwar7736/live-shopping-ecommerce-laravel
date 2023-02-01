@@ -1,3 +1,4 @@
+@php $product = $product['product']; @endphp
 @extends('layouts.app')
 @section('css')
 <link rel="stylesheet" href="{{asset('assets/lightbox/magnific-popup.css')}}">
@@ -12,17 +13,17 @@
     <div class="row">
         <div class="col-lg-3 col-md-6 col-12 pe-0 product-image-col pt-2">
             <div class="image single-product-images mb-3">
-                @if(calculateDiscount($product['product']) > 0)
+                @if(calculateDiscount($product) > 0)
                     <div class="discount-tag">
-                        - {{calculateDiscount($product['product'])}}%
+                        - {{calculateDiscount($product)}}%
                     </div>
                 @endif
                 
                 <div class="owl-carousel slider-for-product">
-                    @if($product['product']['image_url'])
+                    @if($product['image_url'])
                         <div data-hash="slide1">
-                            <a data-fancybox="gallery" data-src="{{$product['product']['image_url']}}">
-                                <img src="{{$product['product']['image_url']}}" class="w-100 d-block" alt="">
+                            <a data-fancybox="gallery" data-src="{{$product['image_url']}}">
+                                <img src="{{$product['image_url']}}" class="w-100 d-block" alt="">
                             </a>
                         </div>
                     @else
@@ -36,10 +37,10 @@
                 
             </div>
             <div class="row">
-                @if($product['product']['image_url'])
+                @if($product['image_url'])
                     <div class="col-3">
                         <a href="#slide1">
-                            <img src="{{$product['product']['image_url']}}" alt="" class="col-12">
+                            <img src="{{$product['image_url']}}" alt="" class="col-12">
                         </a>
                     </div>
                 @else
@@ -55,39 +56,39 @@
             <nav aria-label="breadcrumb" class="pt-0">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('product.category', ['id'=>$product['product']['category']]) }}">{{ $product['product']['category'] ?? '' }}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ $product['product']['product'] ?? $product['product']['default_name'] }}</li>
+                    <li class="breadcrumb-item"><a href="{{ route('product.category', ['id'=>$product['category']]) }}">{{ $product['category'] ?? '' }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $product['product'] ?? $product['default_name'] }}</li>
                 </ol>
                 </nav>
             <a href="#" class="text-decoration-none text-dark">
-                <h3>{{ $product['product']['product'] ?? $product['product']['default_name'] }}</h3>
+                <h3>{{ $product['product'] ?? $product['default_name'] }}</h3>
             </a>
-            @if($product['product']['regular_price'] > 0 && $product['product']['regular_price'] != $product['product']['variation']['default_sell_price'])
+            @if($product['regular_price'] > 0 && $product['regular_price'] != $product['variation']['default_sell_price'])
                 <div class="price pt-3">
-                <del class="text-muted">{{ number_format($product['product']['variation']['default_sell_price'], 2) }}৳
+                <del class="text-muted">{{ number_format($product['variation']['default_sell_price'], 2) }}৳
                 </del>
-                <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{ number_format($product['product']['regular_price'], 2) }}৳</span>
+                <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{ number_format($product['regular_price'], 2) }}৳</span>
                 </div> 
             @else
                 <div class="price pt-3">
-                <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{(number_format($product['product']['variation']['default_sell_price'], 2))}}৳</span>
+                <span class="ps-1" style="color: #ff7400; font-weight: bold;">{{(number_format($product['variation']['default_sell_price'], 2))}}৳</span>
                 </div>
             @endif
-
+            
             <div class="quantity-buy d-flex">
                 <div class="quantity">
                     <button id="cart-qty-minus" class="dec" type="button">-</button>
-                    <input type="number" name="qty" max="10" min="1" value="1" class="input-text qty" />
+                    <input type="number" name="qty" min="1" max="10"  value="1" class="input-text qty" />
                     <button id="cart-qty-plus" type="button" class="inc">+</button>
                     
                 </div>
                 <a href="" class="add_to_cart">
-                    <input type="hidden" name="product" value="{{ $product['product']['id'] }}">
+                    <input type="hidden" name="product" value="{{ $product['id'] }}">
                     <button class="btn px-4 pt-3 pb-2">
                         BUY
                     </button>                    
 
-            </a>                    
+                </a>                    
             <button class="btn px-2 pt-3 pb-2 bg-dark findStore" style="margin-left:10px">
                 Find Store
             </button>
@@ -101,15 +102,17 @@
                 </a>
             </div>
             <hr>
-            <p><b>SKU:</b> {{ $product['product']['sku'] ?? '' }}</p>
-            <p><b>Category: </b> {{ $product['product']['category'] ?? '' }}</p>
+            <p><b>SKU:</b> {{ $product['sku'] ?? '' }}</p>
+            <p><b>Category: </b> {{ $product['category'] ?? '' }}</p>
             <p class="text-sm">
-                {!! $product['product']['description'] !!}
+                {!! $product['description'] !!}
             </p>
         </div>
-        <div class="col-lg-3 col-12 pt-2 {{$product['product']['video'] ? '' : 'd-none'}}">
-            <iframe class="col-12" height="315" src="https://www.youtube.com/embed/{{$product['product']['video']}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
+            @if($product['video'])
+            <div class="col-lg-3 col-12 pt-2">
+            <iframe class="col-12" height="315" src="https://www.youtube.com/embed/{{$product['video']}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            @endif
           <hr>
     </div>
 </div>

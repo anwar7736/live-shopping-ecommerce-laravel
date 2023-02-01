@@ -8,6 +8,6 @@ class WishlistController extends Controller
 {
     public function __invoke()
     {
-        return view('wishlist');
+        return view('wishlist.index');
     }
 }

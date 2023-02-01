@@ -51,9 +51,8 @@ Route::controller(CartController::class)->group(function(){
 });
 
 
-
 Route::get('/about_us', AboutUsController::class)->name('about.us');
-Route::get('/contact_us', ContactUsController::class)->name('contact.us');
+Route::resource('contact_us', ContactUsController::class);
 Route::get('/compare', CompareController::class)->name('compare');
 Route::get('/wishlist', WishlistController::class)->name('wishlist');
 Route::get('/return', ReturnController::class)->name('return');

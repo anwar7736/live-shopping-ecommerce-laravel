@@ -48,7 +48,7 @@ class ProductController extends Controller
         $product_id = request()->get('id');
         $response = Http::get('https://advertbangladesh.com/testpos/api/product_filter_by_id/'.$product_id);
         $product = $response->json();
-        return view('product_details', compact('product'));
+        return view('product.product_details', compact('product'));
     }
 
     /**
@@ -99,7 +99,7 @@ class ProductController extends Controller
         $category_id = request()->get('id');
         $response = Http::get('https://advertbangladesh.com/testpos/api/product_filter_by_category/'.$category_id);
         $products = $response->json();
-        return view('category_product', compact('products'));
+        return view('product.category_product', compact('products'));
     }
 
     public function searchProduct()
@@ -107,6 +107,6 @@ class ProductController extends Controller
         $query = request()->get('query');
         $response = Http::get('https://advertbangladesh.com/testpos/api/product_search/'.$query);
         $products = $response->json();
-        return view('search_item', compact('products'));
+        return view('product.search_item', compact('products'));
     }
 }

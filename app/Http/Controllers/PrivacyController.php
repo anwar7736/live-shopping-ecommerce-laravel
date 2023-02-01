@@ -8,7 +8,7 @@ class PrivacyController extends Controller
 {
     public function __invoke()
     {
-        return view('privacy');
+        return view('privacy.index');
     }
 
 }

@@ -173,30 +173,7 @@ $(document).ready(function () {
     autoplayHoverPause:true,
     startPosition: 'URLHash'
 });
-  $(".cat-carousel").owlCarousel({
-    loop: true,
-    margin: 0,
-    responsiveClass: true,
-    dots: false,
-    nav: true,
-    autoplay: true,
-    responsive: {
-      0: {
-        items: 2,
-        nav: false,
-        dots: false,
-      },
-      450: {
-        items: 2,
-      },
-      600: {
-        items: 3,
-      },
-      1000: {
-        items: 5,
-      },
-    },
-  });
+  
   
 });
 

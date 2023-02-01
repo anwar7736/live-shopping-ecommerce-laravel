@@ -16,9 +16,6 @@
 <body>
     <div class="main-wrapper">
                 @include('layouts.header')
-                <!-- <div class="loading">
-                    @include('components.loading')
-                </div> -->
                 <div class="main-content">
                     @yield('content')
                     {{--@include('components.quick_modal')--}}

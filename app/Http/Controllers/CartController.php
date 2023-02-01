@@ -16,7 +16,7 @@ class CartController extends Controller
     {
     //    return session()->put('cart', []);
         $cart = session()->get('cart', []);
-        return view('cartlist', compact('cart'));
+        return view('cart.index', compact('cart'));
     }
 
     public function store(Request $request)

@@ -47,7 +47,7 @@
                                     <a href="{{ route('about.us') }}" class="nav-link">About Us</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('contact.us') }}" class="nav-link">Contact Us</a>
+                                    <a href="{{ route('contact_us.index') }}" class="nav-link">Contact Us</a>
                                 </li>
                             </ul>
                         </li>
@@ -135,11 +135,11 @@
                                 <li class="nav-item"><a href="{{ route('shop') }}" class="nav-link">Shop</a></li>
                                 <li class="nav-item"><a href="{{ route('flash.sell') }}" class="nav-link">Flash Sell</a></li>
                                 <li class="nav-item"><a href="{{ route('about.us') }}" class="nav-link">About Us</a></li>
-                                <li class="nav-item"><a href="{{ route('contact.us') }}" class="nav-link">Contact Us</a></li>
+                                <li class="nav-item"><a href="{{ route('contact_us.index') }}" class="nav-link">Contact Us</a></li>
                             </ul>
                             <ul class="navbar-nav m-cat-dp" style="display: none;">
                                 @foreach(\Cache::get('categories') as $category)
-                                <li class="nav-item m-cat-active">
+                                <li class="nav-item">
                                     <a href="{{ route('product.category', ['id'=>$category['id']]) }}" class="nav-link">{{ $category['name'] }}</a>
                                 </li>
                                 @endforeach
@@ -180,7 +180,7 @@
                                 <a href="{{ route('about.us') }}" class="nav-link">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('contact.us') }}" class="nav-link">Contact Us</a>
+                                <a href="{{ route('contact_us.index') }}" class="nav-link">Contact Us</a>
                             </li>
                         </ul>
                     </li>

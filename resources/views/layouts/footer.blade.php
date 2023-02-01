@@ -26,7 +26,7 @@
                                     <a href="#"><b>MY ACCOUNT</b></a>
                                 </li>
                                 <li><a href="#">Dashboard</a></li>
-                                <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
+                                <li><a href="#">Wishlist</a></li>
                                 <li><a href="#">Special Products</a></li>
                                 <li><a href="#">Gift Voucher</a></li>
                                 <li><a href="#">Delivery & Shipping</a></li>
@@ -37,7 +37,7 @@
                                 <li>
                                     <a href="#"><b>SERVICES</b></a>
                                 </li>
-                                <li><a href="{{ route('contact.us') }}">Contact us</a></li>
+                                <li><a href="{{ route('contact_us.index') }}">Contact us</a></li>
                                 <li><a href="#">Sitemap</a></li>
                                 <li><a href="#">Support</a></li>
                                 <li><a href="#">Help</a></li>

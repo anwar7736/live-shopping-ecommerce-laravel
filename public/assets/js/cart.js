@@ -3,7 +3,7 @@ $(function(){
     $(document).on('submit', 'form#cartForm', function(e){
         e.preventDefault();
        let size = $(this).find('input.variation:checked').val();
-       let product = $(this).find('input[name="product"]').val();
+    //    let product = $(this).find('input[name="product"]').val();
        let type = $(this).find('input[name="type"]').val();
        let url = $(this).attr('action');
        let method = $(this).attr('method');
@@ -15,7 +15,7 @@ $(function(){
        else {
             addToCart(url, method, data);
        }
-    }); 
+    });  
     
     //Cart item remove
     $(document).on('submit', 'form#cartRemoveForm', function(e){
@@ -138,9 +138,10 @@ $(function(){
     $(document).on('click', 'a.add_to_cart', function(e){
         e.preventDefault();
         let id = $(this).find('input[name="product"]').val();
+        let qty = $(this).closest('div').find('input[name="qty"]').val() ?? 1;
         let url = "/cart";
         let method = "POST";
-        const data = {product:id,qty:1, variation:'', token:$('meta[name="csrf-token"]').attr('content')};
+        const data = {product:id,qty, variation:'', token:$('meta[name="csrf-token"]').attr('content')};
         addToCart(url, method, data);
 
     })    

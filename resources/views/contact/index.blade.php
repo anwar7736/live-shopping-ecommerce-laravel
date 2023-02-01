@@ -103,29 +103,30 @@
                     <div class="col-lg-6 col-md-12 col-12 contact-form">
                         <h6>INFORMATION ABOUT US</h6>
                         <h3>CONTACT US FOR ANY QUESTIONS</h3>
-                        <form class="mt-5" onsubmit="return false">
+                        <form class="mt-5" id="contactForm" method="POST" action="{{ route('contact_us.store') }}">
+                        @csrf
                           <div class="row">
                             <div class="mb-3 col-lg-6 col-md-6 col-12 text-muted">
                                 <label for="name">Your Name</label>
-                                <input type="text" class="form-control" id="name">
+                                <input type="text" class="form-control" name="customer_name" id="name" required>
                             </div>
                             <div class="mb-3 col-lg-6 col-md-6 col-12 text-muted">
-                                <label for="email">Your Name</label>
-                                <input type="email" class="form-control" id="email">
+                                <label for="email">Your Email</label>
+                                <input type="email" class="form-control" name="customer_email" id="email" required>
                             </div>
                             <div class="mb-3 col-lg-6 col-md-6 col-12 text-muted">
                                 <label for="phone">Your Phone</label>
-                                <input type="text" class="form-control" id="phone">
+                                <input type="text" class="form-control" name="customer_phone" id="phone" required>
                             </div>
                             <div class="mb-3 col-lg-6 col-md-6 col-12 text-muted">
                                 <label for="subject">Subject</label>
-                                <input type="text" class="form-control" id="subject">
+                                <input type="text" class="form-control" name="message_title" id="subject" required>
                             </div>
                             
                           </div>
                           <div class="mb-3 col-12 text-muted">
                             <label for="message">Your Message</label>
-                            <textarea name="" id="message" rows="5" class="form-control col-12"></textarea>
+                            <textarea name="message_body" id="message" rows="5" class="form-control col-12" required></textarea>
                             </div>
                           <button type="submit" class="btn btn-secondary">Send Your Message</button>
                         </form>
@@ -134,3 +135,6 @@
             </div>
         </section>
 @endsection
+@push('js')
+<script src="{{ asset('assets/js/contact.js') }}"></script>
+@endpush

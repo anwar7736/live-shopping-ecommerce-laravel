@@ -75,6 +75,8 @@ $(function(){
     //Product Filter Method
     function productFilter()
     {
+        $(document).find('div.loading-section').removeClass('d-none');
+        $(document).find('div.product_data').addClass('d-none');
         let from = $(document).find('input#one').val();
         let to = $(document).find('input#two').val();
         const categories = $(document).find('li.bg-warning a').data('id');
@@ -90,6 +92,8 @@ $(function(){
             {
                 if(res.html)
                 {
+                    $(document).find('div.loading-section').addClass('d-none');
+                    $(document).find('div.product_data').removeClass('d-none');
                     $('.product_data').html(res.html);
                 }
                 

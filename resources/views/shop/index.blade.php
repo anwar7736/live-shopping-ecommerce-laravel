@@ -212,7 +212,10 @@
                     </div>
                 </div>
             </div>
-            <div class="all-products row deal-day-row product_data">
+            <div class="loading-section">
+                @include('components.loading')
+            </div>
+            <div class="all-products row deal-day-row product_data d-none">
             
             </div>
         </div>
@@ -230,6 +233,8 @@
             {
                 if(res.html)
                 {
+                    $(document).find('div.loading-section').addClass('d-none');
+                    $(document).find('div.product_data').removeClass('d-none');
                     $('.product_data').html(res.html);
                 }
                 

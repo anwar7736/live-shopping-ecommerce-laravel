@@ -9,7 +9,7 @@ class FlashSellController extends Controller
     public function index()
     {
 
-        return view('flash_sell');
+        return view('flash_sell.index');
     }
 
     public function flashSellProduct()

@@ -7,6 +7,10 @@
 @endsection
 @section('content')
 <!-- Main content start  -->
+<div class="loading">
+    @include('components.loading')
+</div>
+<div class="home-section d-none">
 <section>
     <div class="container-fluid">
         <div id="cover-slide" class="carousel slide carousel-fade " data-bs-ride="carousel">
@@ -83,7 +87,7 @@
                     <div class="tab-container" id="tab1con">
                        
                     </div>
-                    <div class="tab-container" id="tab2con">
+                    <div class="tab-container" id="tab2con" style="display:none">
                        
                     </div>
                 </div>
@@ -127,7 +131,7 @@
                     <div class="tab-container" id="tab3con">
 
                     </div>
-                    <div class="tab-container" id="tab4con">
+                    <div class="tab-container" id="tab4con" style="display:none">
 
                     </div>
                 </div>
@@ -171,7 +175,7 @@
                     <div class="tab-container" id="tab5con">
 
                     </div>
-                    <div class="tab-container" id="tab6con">
+                    <div class="tab-container" id="tab6con" style="display:none">
 
                     </div>
                 </div>
@@ -192,6 +196,7 @@
 </section>
 <!-- All Products Grid Section end  -->
 <br><br>
+</div>
 @endsection
 @push('js')
     <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
@@ -205,6 +210,8 @@
                 {
                     if(res.html)
                     {
+                        $(document).find('div.loading').addClass('d-none');
+                        $(document).find('div.home-section').removeClass('d-none');
                         $('.product_data').html(res.html);
                     }
                     
@@ -214,53 +221,126 @@
             $.ajax({
                 url: '{{ route("summerTrendy") }}',
                 method: "GET",
-                success: function(res)
-                {
-                    if(res.summer_hot)
-                    {
+                success: function(res){
+          
+                    if(res.summer_hot){
                         $(document).find('div#tab1con').html(res.summer_hot);
                     }                    
                     if(res.summer_new)
                     {
                         $(document).find('div#tab2con').html(res.summer_new);
                     }
+
+                    $(".cat-carousel").owlCarousel({
+                            loop: true,
+                            margin: 0,
+                            responsiveClass: true,
+                            dots: false,
+                            nav: true,
+                            autoplay: true,
+                            responsive: {
+                            0: {
+                                items: 2,
+                                nav: false,
+                                dots: false,
+                            },
+                            450: {
+                                items: 2,
+                            },
+                            600: {
+                                items: 3,
+                            },
+                            1000: {
+                                items: 5,
+                            },
+                            },
+                        });
                     
                 }
-            });            
+            });  
             
             $.ajax({
                 url: '{{ route("bestDeal") }}',
                 method: "GET",
-                success: function(res)
-                {
-                    if(res.best_hot)
-                    {
+                success: function(res){
+          
+                    if(res.best_hot){
                         $(document).find('div#tab3con').html(res.best_hot);
                     }                    
                     if(res.best_new)
                     {
                         $(document).find('div#tab4con').html(res.best_new);
                     }
+
+                    $(".cat-carousel").owlCarousel({
+                            loop: true,
+                            margin: 0,
+                            responsiveClass: true,
+                            dots: false,
+                            nav: true,
+                            autoplay: true,
+                            responsive: {
+                            0: {
+                                items: 2,
+                                nav: false,
+                                dots: false,
+                            },
+                            450: {
+                                items: 2,
+                            },
+                            600: {
+                                items: 3,
+                            },
+                            1000: {
+                                items: 5,
+                            },
+                            },
+                        });
                     
                 }
-            });            
+            });  
             
             $.ajax({
                 url: '{{ route("exportQuality") }}',
                 method: "GET",
-                success: function(res)
-                {
-                    if(res.export_hot)
-                    {
+                success: function(res){
+          
+                    if(res.export_hot){
                         $(document).find('div#tab5con').html(res.export_hot);
                     }                    
                     if(res.export_new)
                     {
                         $(document).find('div#tab6con').html(res.export_new);
                     }
+
+                    $(".cat-carousel").owlCarousel({
+                            loop: true,
+                            margin: 0,
+                            responsiveClass: true,
+                            dots: false,
+                            nav: true,
+                            autoplay: true,
+                            responsive: {
+                            0: {
+                                items: 2,
+                                nav: false,
+                                dots: false,
+                            },
+                            450: {
+                                items: 2,
+                            },
+                            600: {
+                                items: 3,
+                            },
+                            1000: {
+                                items: 5,
+                            },
+                            },
+                        });
                     
                 }
-            });
+            });     
+        
         });
     </script>
 @endpush

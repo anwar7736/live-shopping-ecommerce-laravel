@@ -8,6 +8,6 @@ class CompareController extends Controller
 {
     public function __invoke()
     {
-        return view('compare');
+        return view('compare.index');
     }
 }
