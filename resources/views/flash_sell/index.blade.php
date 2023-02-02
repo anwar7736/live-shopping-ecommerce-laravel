@@ -17,7 +17,7 @@
     <div class="loading">
         @include('components.loading')
     </div>
-    <div class="container mt-5 mb-5">
+    <div class="container mt-5 mb-5 home-product-d-d">
         <div class="row deal-day-row product_data">
             
         </div>

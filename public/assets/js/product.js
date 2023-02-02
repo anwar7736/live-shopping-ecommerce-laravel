@@ -33,6 +33,7 @@ $(function(){
     //Category Change
     $(document).on('click', '.category_id', function(e){
         e.preventDefault();
+
         if( $(this).closest('li.category_item').hasClass('bg-warning'))
         {
             $(this).closest('li.category_item').removeClass('bg-warning');
@@ -119,7 +120,7 @@ $(function(){
                         $("#find-store-modal").html(res.html).modal('show');
                    }
 
-                   else toastr.error('No location found!');
+                   else toastr.error('Store not available!');
                     
                 }
             }

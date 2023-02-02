@@ -4,9 +4,9 @@
                 <div class="topbar-main col-12 container">
                     <div class="topbar d-flex justify-content-between">
                         <ul class="topbar-left p-0 mb-0">
-                            <li><a href="{{ route('return') }}" class="top-l-link">Return</a></li>
-                            <li><a href="{{ route('terms') }}" class="top-l-link">Terms</a></li>
-                            <li><a href="{{ route('faq') }}" class="top-l-link">FAQS</a></li>
+                            <li><a href="{{ route('return') }}" class="top-l-link {{ request()->is('return') ? 'text-danger' : ''}}">Return</a></li>
+                            <li><a href="{{ route('terms') }}" class="top-l-link {{ request()->is('terms') ? 'text-danger' : ''}}">Terms</a></li>
+                            <li><a href="{{ route('faq') }}" class="top-l-link {{ request()->is('faq') ? 'text-danger' : ''}}">FAQS</a></li>
                         </ul>
                         <div class="topbar-right">
                             <ul class="topbar-right me-1 mb-0">
@@ -35,19 +35,19 @@
                         <li class="menu-items-container d-none d-md-none d-lg-block">
                             <ul class="d-flex menu-items">
                                 <li class="nav-item">
-                                    <a href="{{ route('home') }}" class="nav-link active">Home</a>
+                                    <a href="{{ route('home') }}" class="nav-link {{ request()->is('/') ? 'active' : ''}}">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('shop') }}" class="nav-link">Shop</a>
+                                    <a href="{{ route('shop') }}" class="nav-link {{ request()->is('shop') ? 'active' : ''}}">Shop</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('flash.sell') }}" class="nav-link">Flash Sell</a>
+                                    <a href="{{ route('flash.sell') }}" class="nav-link {{ request()->is('flash_sell') ? 'active' : ''}}">Flash Sell</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('about.us') }}" class="nav-link">About Us</a>
+                                    <a href="{{ route('about.us') }}" class="nav-link {{ request()->is('about_us') ? 'active' : ''}}">About Us</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('contact_us.index') }}" class="nav-link">Contact Us</a>
+                                    <a href="{{ route('contact_us.index') }}" class="nav-link {{ request()->is('contact_us') ? 'active' : ''}}">Contact Us</a>
                                 </li>
                             </ul>
                         </li>
@@ -118,7 +118,7 @@
                 <div class="m-row">
                     <div class="mobile-sidebar collapsed-left-open">
                         <form action="#" class="mobile-sidebar-form">
-                        <input type="text" class="msf-input" placeholder="Product search here..">
+                            <input type="text" class="msf-input" placeholder="Product search here..">
                             <button type="button" onclick="mobileSearch()"><i class="fas fa-search"></i></button>
                         </form>
                         <div class="m-sidebar-tab-container col-12">
@@ -131,11 +131,11 @@
                                 </div>  
                             </div>
                             <ul class="navbar-nav m-menu-dp">
-                                <li class="nav-item m-menu-active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-                                <li class="nav-item"><a href="{{ route('shop') }}" class="nav-link">Shop</a></li>
-                                <li class="nav-item"><a href="{{ route('flash.sell') }}" class="nav-link">Flash Sell</a></li>
-                                <li class="nav-item"><a href="{{ route('about.us') }}" class="nav-link">About Us</a></li>
-                                <li class="nav-item"><a href="{{ route('contact_us.index') }}" class="nav-link">Contact Us</a></li>
+                                <li class="nav-item {{ request()->is('/') ? 'm-menu-active' : ''}}"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
+                                <li class="nav-item {{ request()->is('shop') ? 'm-menu-active' : ''}}"><a href="{{ route('shop') }}" class="nav-link">Shop</a></li>
+                                <li class="nav-item {{ request()->is('flash_sell') ? 'm-menu-active' : ''}}"><a href="{{ route('flash.sell') }}" class="nav-link">Flash Sell</a></li>
+                                <li class="nav-item {{ request()->is('about_us') ? 'm-menu-active' : ''}}"><a href="{{ route('about.us') }}" class="nav-link">About Us</a></li>
+                                <li class="nav-item {{ request()->is('contact_us') ? 'm-menu-active' : ''}}"><a href="{{ route('contact_us.index') }}" class="nav-link">Contact Us</a></li>
                             </ul>
                             <ul class="navbar-nav m-cat-dp" style="display: none;">
                                 @foreach(\Cache::get('categories') as $category)
@@ -168,19 +168,19 @@
                     <li class="menu-items-container d-none d-md-none d-lg-block">
                         <ul class="d-flex menu-items">
                             <li class="nav-item">
-                                <a href="{{ route('home') }}" class="nav-link active">Home</a>
+                                <a href="{{ route('home') }}" class="nav-link {{ request()->is('/') ? 'active' : ''}}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('shop') }}" class="nav-link">Shop</a>
+                                <a href="{{ route('shop') }}" class="nav-link {{ request()->is('shop') ? 'active' : ''}}">Shop</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('flash.sell') }}" class="nav-link">Flash Sell</a>
+                                <a href="{{ route('flash.sell') }}" class="nav-link {{ request()->is('flash_sell') ? 'active' : ''}}">Flash Sell</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('about.us') }}" class="nav-link">About Us</a>
+                                <a href="{{ route('about.us') }}" class="nav-link {{ request()->is('about_us') ? 'active' : ''}}">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('contact_us.index') }}" class="nav-link">Contact Us</a>
+                                <a href="{{ route('contact_us.index') }}" class="nav-link {{ request()->is('contact_us') ? 'active' : ''}}">Contact Us</a>
                             </li>
                         </ul>
                     </li>
@@ -192,7 +192,7 @@
                     </li>
                     <li class="cart-sm d-block d-md-block d-lg-none">
                         <a href="#">
-                            <i class="fas fa-shopping-bag"></i><span class="badge badge-pill">1</span>
+                            <i class="fas fa-shopping-bag"></i><span class="badge badge-pill" id="cart_item_count">{{ getTotalCart() }}</span>
                         </a>
                     </li>
                 </ul>

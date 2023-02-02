@@ -1317,3 +1317,28 @@ footer .row div form button{
     opacity: 1;
   }
 }
+
+.loading-image{
+  color: #FF6A00 !important;
+}
+
+
+/* .home-product-d-d .deal-day-row .product .images img{
+  height: 100%;
+} */
+.slider-product-title{
+  height: 30px;
+}
+.shop-page-products >.row{
+  padding-left: 0 !important;
+}
+.findStore{
+  margin-left: 10px;
+  height: 50px;
+}
+.product-image-col .row{
+  margin-bottom: 10px;
+}
+.cart-item img{
+  height: 80px;
+}

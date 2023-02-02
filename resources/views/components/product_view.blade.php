@@ -30,7 +30,9 @@
     </div>
     
     <div class="product-details text-center pt-2">
+        <div class="slider-product-title">
         <a href="{{route('product.details', ['id'=>$product['id']])}}" class="text-dark" style="text-decoration: none; font-weight: 600;">{{$product['product'] ?? $product['default_name']}}</a>
+        </div>
         @if($product['regular_price'] > 0 && $product['regular_price'] != $product['variation']['default_sell_price'])
             <div class="price pt-3">
             <del class="text-muted">{{ number_format($product['variation']['default_sell_price'], 2) }}৳

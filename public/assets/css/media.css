@@ -1,3 +1,24 @@
+@media (max-width: 395px){
+  .product-items div > .images .main-image{
+    height: 160px;
+  }
+  .product-items div > .product-details > .price{
+    height: 70px;
+  }
+  .product .images{
+    height: 135px !important;
+  }
+  .quantity-buy{
+    flex-wrap: wrap;
+  }
+  .findStore{
+    width: 98%;
+    margin-top: 10px;
+  }
+  .add_to_cart .buy{
+     width: 165px; 
+  }
+}
 /*Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
     /* tobar section  */
@@ -75,6 +96,15 @@
       z-index: 1090;
       top: 0;
     }
+    .home-product-d-d .deal-day-row .product .images{
+      height: 160px;
+    }
+    .product-items div > .images .main-image{
+      height: 180px;
+    }
+    .product .images{
+      height: 185px;
+    }
   }
   
   /* Small devices (landscape phones, 576px and up)*/
@@ -121,6 +151,15 @@
       background-color: white;
       top: 0;
     }
+    .home-product-d-d .deal-day-row .product .images{
+      height: 180px;
+    }
+    .product-items div > .images .main-image{
+      height: 180px;
+    }
+    .product .images{
+      height: 200px;
+    }
   }
   
   /* Medium devices (tablets, 768px and up)*/
@@ -153,6 +192,15 @@
     .product-details-p{
       display: none;
     } 
+    .home-product-d-d .deal-day-row .product .images{
+      height: 200px;
+    }
+    .product-items div > .images .main-image{
+      height: 200px;
+    }
+    .product .images{
+      height: 215px;
+    }
   }
   
   /* Large devices (desktops, 992px and up)*/
@@ -163,6 +211,15 @@
     }
     .signup-form{
       border-right: 1px solid rgba(128, 128, 128, 0.493);
+    }
+    .home-product-d-d .deal-day-row .product .images{
+      height: 220px;
+    }
+    .product-items div > .images .main-image{
+      height: 160px;
+    }
+    .product .images{
+      height: 185px;
     }
   }
   
@@ -181,6 +238,15 @@
     }
     .border-lg-start{
       border-left: 1px solid rgba(128, 128, 128, 0.171);
+    }
+    .home-product-d-d .deal-day-row .product .images{
+      height: 250px;
+    }
+    .product-items div > .images .main-image{
+      height: 170px;
+    }
+    .product .images{
+      height: 200px;
     }
   }
   
@@ -207,5 +273,14 @@
     .main-wrapper{
       width: 90%;
       margin: 0 auto;
+    }
+    .home-product-d-d .deal-day-row .product .images{
+      height: 250px;
+    }
+    .product-items div > .images .main-image{
+      height: 180px;
+    }
+    .product .images{
+      height: 225px;
     }
   }

@@ -215,7 +215,7 @@
             <div class="loading-section">
                 @include('components.loading')
             </div>
-            <div class="all-products row deal-day-row product_data d-none">
+            <div class="all-products shop-page-products row deal-day-row product_data d-none">
             
             </div>
         </div>

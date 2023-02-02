@@ -17,19 +17,21 @@
                 </a>
             </li>
             <li class="d-lg-block d-md-block d-none" title="Quick View">
-                <a href="#" class="compare" data-bs-toggle="modal" data-bs-target="#product-modal">
+                <a href="{{ route('product_by_id', $product['id']) }}" class="compare quick-view">
                     <i class="fas fa-search"></i>
                 </a>
             </li>
             <li title="Add To Wishlist">
-                <a href="compare.html" class="compare">
+                <a href="#" class="compare">
                     <i class="far fa-heart"></i>
                 </a>
             </li>
         </ul>
     </div>
     <div class="product-details text-center pt-2">
+        <div class="slider-product-title">
         <a href="{{route('product.details', ['id'=>$product['id']])}}" class="text-dark" style="text-decoration: none; font-weight: 600;">{{$product['product'] ?? $product['default_name']}}</a>
+        </div>
         @if($product['regular_price'] > 0 && $product['regular_price'] != $product['variation']['default_sell_price'])
             <div class="price pt-3">
             <del class="text-muted">{{ number_format($product['variation']['default_sell_price'], 2) }}৳

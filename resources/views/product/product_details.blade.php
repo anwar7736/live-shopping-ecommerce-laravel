@@ -84,12 +84,12 @@
                 </div>
                 <a href="" class="add_to_cart">
                     <input type="hidden" name="product" value="{{ $product['id'] }}">
-                    <button class="btn px-4 pt-3 pb-2">
+                    <button class="btn px-4 pt-3 pb-2 buy">
                         BUY
                     </button>                    
 
                 </a>                    
-            <button class="btn px-2 pt-3 pb-2 bg-dark findStore" style="margin-left:10px">
+            <button class="btn px-2 pt-3 pb-2 bg-dark findStore">
                 Find Store
             </button>
             </div>

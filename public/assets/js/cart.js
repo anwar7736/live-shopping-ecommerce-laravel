@@ -10,7 +10,7 @@ $(function(){
        let data = $(this).serialize();
        if(type == 'variable' && isNaN(size))
        {
-            toastr.error('Size is required!');
+            toastr.error('Product size is required!');
        }
        else {
             addToCart(url, method, data);

@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{asset('favicon.png')}}">
     <title>@yield('title', 'Live Shopping')</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/bootstrap/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/toastr.min.css')}}">
-    <!-- <link rel="stylesheet" media="all" href="{{asset('assets/css/media.css')}}"> -->
+    <link rel="stylesheet" media="all" href="{{asset('assets/css/media.css')}}">
     @yield('css')
 </head>
 <body>

@@ -189,7 +189,7 @@
         <div class="liner-continer">
             <h4 class="title">DEALS OF THE DAY</h4> 
         </div>
-        <div class="all-products product_data">
+        <div class="all-products product_data home-product-d-d">
            
         </div>
     </div>
@@ -203,26 +203,29 @@
     <script src="{{asset('assets/slick/slick.min.js')}}"></script>
     <script>
         $(document).ready(function(){
-            $.ajax({
+            summerTrendyProducts();
+
+            function dealOfTheDayProducts(){
+                $.ajax({
                 url: '{{ route("dealOfTheDay") }}',
                 method: "GET",
                 success: function(res)
                 {
                     if(res.html)
                     {
-                        $(document).find('div.loading').addClass('d-none');
-                        $(document).find('div.home-section').removeClass('d-none');
                         $('.product_data').html(res.html);
                     }
                     
                 }
-            });            
+            });
+            }            
             
-            $.ajax({
+            function summerTrendyProducts(){
+                $.ajax({
                 url: '{{ route("summerTrendy") }}',
                 method: "GET",
                 success: function(res){
-          
+                    bestDealProducts();
                     if(res.summer_hot){
                         $(document).find('div#tab1con').html(res.summer_hot);
                     }                    
@@ -230,6 +233,9 @@
                     {
                         $(document).find('div#tab2con').html(res.summer_new);
                     }
+
+                    $(document).find('div.loading').addClass('d-none');
+                    $(document).find('div.home-section').removeClass('d-none');
 
                     $(".cat-carousel").owlCarousel({
                             loop: true,
@@ -258,12 +264,14 @@
                     
                 }
             });  
+            }
             
-            $.ajax({
+            function bestDealProducts(){
+                $.ajax({
                 url: '{{ route("bestDeal") }}',
                 method: "GET",
                 success: function(res){
-          
+                    exportQualityProducts();
                     if(res.best_hot){
                         $(document).find('div#tab3con').html(res.best_hot);
                     }                    
@@ -297,14 +305,16 @@
                             },
                         });
                     
-                }
-            });  
+                    }
+                });  
+            }
             
+          function exportQualityProducts(){
             $.ajax({
                 url: '{{ route("exportQuality") }}',
                 method: "GET",
                 success: function(res){
-          
+                    dealOfTheDayProducts();
                     if(res.export_hot){
                         $(document).find('div#tab5con').html(res.export_hot);
                     }                    
@@ -339,7 +349,8 @@
                         });
                     
                 }
-            });     
+            });   
+          }  
         
         });
     </script>
